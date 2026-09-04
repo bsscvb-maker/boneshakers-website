@@ -1,4 +1,319 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Our Story | BoneShakers Social Club</title><link rel="stylesheet" href="assets/css/style.css"></head><body>
-<header class="site-header"><a class="brand" href="index.html">BONE<span>SHAKERS</span></a><button class="menu" aria-label="Open navigation" aria-expanded="false">☰</button><nav><a href="index.html">Home</a><a href="about.html">Our Story</a><a href="impact.html">Community Impact</a><a href="bikes-for-tykes.html">Bikes for Tykes</a><a href="join.html">Join</a><a href="events.html">Events</a><a href="marketplace.html">Marketplace</a><a href="contact.html">Contact</a></nav></header>
-<main><section class="page-hero"><p class="eyebrow">BONESHAKERS SOCIAL CLUB</p><h1>Our Story</h1></section><section class="content"><h2>Who We Are</h2><p>BoneShakers Social Club is built around motorcycles, friendship, respect and service. This page will carry the club’s full story, mission, leadership and values as we migrate the existing site.</p><div class="notice"><strong>Build in progress</strong><p>We are migrating and improving this section while the current BoneShakers website remains live.</p></div><a class="btn" href="index.html">← Back to Home</a></section></main>
-<footer><div><strong>BoneShakers Social Club</strong><p>We ride for fun. We serve with purpose. We show up for each other.</p></div><small>New website build in progress.</small></footer><script src="assets/js/main.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>About Us — BoneShakers Social Club</title>
+<style>
+:root{
+  --bg:#050507;--bg2:#0b0b0d;--card:#0f0f12;--text:#ffffff;--muted:#cfcfcf;
+  --line:#2a2a2a;--red:#C1352E;--shadow:0 16px 44px rgba(0,0,0,.58);
+  --radius:18px;--radius2:22px;--maxw:1180px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Verdana,Arial,sans-serif;font-size:12pt;line-height:1.55;overflow-x:hidden}
+a{color:inherit;text-decoration:none} img{max-width:100%;display:block}
+
+/* GLOBAL NAVIGATION */
+.globalHeader{background:#000;color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}
+.brandTag{max-width:var(--maxw);margin:0 auto;text-align:center;padding:12px 20px 16px}
+.brandTag .brandName{font-size:27px;line-height:1.15;margin:0 0 5px}
+.brandTag .brandLine{font-size:25px;line-height:1.25;margin:0}
+.brandTag .brandLine + .brandLine{margin-top:2px}
+.mainNavWrap{border-top:1px solid rgba(255,255,255,.04)}
+.mainNav{max-width:var(--maxw);margin:0 auto;display:flex;justify-content:center;align-items:center;gap:6px;padding:0 18px}
+.navItem{position:relative}
+.navLink,.navButton{display:flex;align-items:center;gap:7px;padding:17px 16px;color:#fff;background:transparent;border:0;font:inherit;font-size:11.5pt;letter-spacing:1.8px;text-transform:uppercase;cursor:pointer;white-space:nowrap}
+.navLink:hover,.navButton:hover,.navLink.active{color:#cfcfcf}
+.chev{font-size:12px;line-height:1;transition:transform .2s ease}
+.navItem.open .chev{transform:rotate(180deg)}
+.dropdown{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);min-width:230px;background:#0b0b0d;border:1px solid rgba(255,255,255,.14);box-shadow:0 16px 40px rgba(0,0,0,.65);z-index:200;padding:8px}
+.navItem.open .dropdown{display:block}
+.dropdown a{display:block;padding:11px 12px;border-radius:6px;color:#fff;font-size:10.8pt;letter-spacing:.2px}
+.dropdown a:hover{background:rgba(255,255,255,.07)}
+.mobileNavButton{display:none;width:calc(100% - 36px);margin:10px 18px 14px;padding:12px 14px;background:#111;color:#fff;border:1px solid rgba(255,255,255,.18);border-radius:10px;font-weight:700;text-align:left}
+
+/* HERO */
+.hero{border-bottom:4px solid var(--red);background:radial-gradient(1000px 420px at 50% -10%,rgba(193,53,46,.25),transparent 60%),linear-gradient(135deg,#000 55%,#111 100%)}
+.heroInner{max-width:var(--maxw);margin:0 auto;padding:40px 26px;text-align:center}
+.heroH1{margin:0;font-size:34pt;font-weight:1000;letter-spacing:1.2px;text-transform:uppercase}
+.heroSub{margin:14px auto 0;font-size:14pt;color:var(--muted);max-width:70ch}
+
+/* LAYOUT */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:26px}
+.section{padding:34px 0}
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent)}
+.title{font-size:14pt;font-weight:800;letter-spacing:.6px;text-transform:uppercase;margin:0 0 10px}
+.lead{color:var(--muted);margin:0 0 12px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+.card{padding:18px;border-radius:var(--radius2);border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));box-shadow:var(--shadow)}
+.story{display:grid;grid-template-columns:1.2fr .8fr;gap:20px}
+.storyBox{padding:18px;border-radius:var(--radius2);border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));box-shadow:var(--shadow)}
+.cta{text-align:center;padding:22px;border-radius:var(--radius2);border:1px solid rgba(255,255,255,.12);box-shadow:var(--shadow)}
+.btnrow{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:16px}
+.btn{background:var(--red);color:#fff;padding:12px 18px;border-radius:14px;font-weight:800;letter-spacing:.3px;min-width:220px;box-shadow:0 10px 26px rgba(193,53,46,.30)}
+.btn.secondary{background:transparent;border:1px solid rgba(255,255,255,.25)}
+
+/* RECOGNITION */
+.recognition{max-width:1100px;margin:0 auto;padding:80px 20px}
+.recognition h2{font-size:34px;font-weight:700;margin-bottom:18px;letter-spacing:.2px}
+.recognitionCard{background:#0b0b0d;border:1px solid #222;border-radius:18px;padding:24px;margin-bottom:40px;box-shadow:0 14px 40px rgba(0,0,0,.55)}
+.recognitionCard:last-child{margin-bottom:0}
+.recognitionCard img{width:100%;height:auto;border-radius:14px;border:1px solid rgba(255,255,255,.12);margin-bottom:20px}
+.recTitle{font-size:20px;font-weight:700;margin-bottom:6px}
+.recOrg{font-size:15px;color:#e6d48a;margin-bottom:6px}
+.recDate{font-size:14px;color:#cfcfcf;margin-bottom:18px}
+.recognitionCard p{font-size:15px;color:#ddd;line-height:1.7}
+.recognitionCard h3{font-size:24px;font-weight:700;margin-bottom:16px}
+.recDivider{height:1px;background:rgba(255,255,255,.10);margin:26px 0}
+
+/* FOUNDING PRESIDENT */
+.founder{width:100%;background:#0b0b0d;color:#fff;padding:60px 16px}
+.founderInner{max-width:1200px;margin:0 auto}
+.founder h2{font-size:26px;margin:0 0 14px;font-weight:bold}
+.founderIntro{font-size:12px;line-height:1.7;color:#d6d6d6;max-width:800px;margin:0 0 36px}
+.founderImages{display:flex;flex-wrap:wrap;gap:24px;margin-bottom:36px}
+.founderImage{flex:1;min-width:260px}
+.founderImage img{width:100%;border-radius:12px;border:1px solid #333}
+.founderImage p{font-size:12px;color:#bbb;margin-top:10px}
+.tribute{border-left:4px solid var(--red);padding-left:16px;max-width:900px}
+.tribute p{font-size:12px;line-height:1.8;color:#e6e6e6;margin:0}
+.tribute .sig{font-size:12px;color:#999;margin-top:12px}
+
+footer{padding:18px 0 26px;color:rgba(255,255,255,.75);text-align:center;font-size:11.2pt}
+
+@media(max-width:980px){
+  .cards{grid-template-columns:1fr}.story{grid-template-columns:1fr}
+  .mobileNavButton{display:block}.mainNav{display:none;flex-direction:column;align-items:stretch;padding:0 18px 16px}
+  .mainNav.mobileOpen{display:flex}.navItem{width:100%}
+  .navLink,.navButton{width:100%;justify-content:space-between;padding:13px 8px;border-bottom:1px solid rgba(255,255,255,.08)}
+  .dropdown{position:static;transform:none;min-width:0;border:0;border-left:2px solid var(--red);box-shadow:none;background:#09090b;margin:0 0 6px 8px;padding:4px 8px}
+}
+@media(max-width:768px){
+  .heroH1{font-size:24pt}.heroSub{font-size:12pt}.heroInner{padding:28px 18px}
+  .wrap{padding:18px}.section{padding:24px 0}.title{font-size:12.5pt}.lead{font-size:11pt}
+  .btn{min-width:100%}.recognition{padding:48px 18px}.recognition h2{font-size:28px}
+  .brandTag .brandName{font-size:23px}.brandTag .brandLine{font-size:21px}
+  footer{font-size:10pt}
+}
+</style>
+</head>
+<body>
+
+<header class="globalHeader">
+  <div class="brandTag">
+    <p class="brandName">Boneshakers</p>
+    <p class="brandLine">We ride for fun</p>
+    <p class="brandLine">We serve with purpose</p>
+    <p class="brandLine">We show up for each other</p>
+  </div>
+
+  <button class="mobileNavButton" id="mobileNavButton" type="button" aria-expanded="false">☰ Menu</button>
+
+  <div class="mainNavWrap">
+    <nav class="mainNav" id="mainNav" aria-label="Main navigation">
+      <div class="navItem"><a class="navLink" href="index.html">Home</a></div>
+
+      <div class="navItem openOnLoad">
+        <button class="navButton" type="button">About <span class="chev">⌄</span></button>
+        <div class="dropdown">
+          <a href="about.html">Our Story &amp; Mission</a>
+          <a href="https://boneshakerssocialclub.com/board-of-directors">Board of Directors</a>
+          <a href="https://boneshakerssocialclub.com/club-support-roles">Club Support Roles</a>
+          <a href="https://boneshakerssocialclub.com/gallery">Gallery &amp; Honor Wall</a>
+        </div>
+      </div>
+
+      <div class="navItem">
+        <button class="navButton" type="button">Rides &amp; Events <span class="chev">⌄</span></button>
+        <div class="dropdown">
+          <a href="events.html">Event Calendar</a>
+        </div>
+      </div>
+
+      <div class="navItem">
+        <button class="navButton" type="button">Programs <span class="chev">⌄</span></button>
+        <div class="dropdown">
+          <a href="bikes-for-tykes.html">Bikes for Tykes</a>
+          <a href="impact.html">Community Impacts</a>
+        </div>
+      </div>
+
+      <div class="navItem">
+        <button class="navButton" type="button">Get Involved <span class="chev">⌄</span></button>
+        <div class="dropdown">
+          <a href="join.html">Join the BoneShakers</a>
+          <a href="contact.html">General Contact</a>
+        </div>
+      </div>
+
+      <div class="navItem">
+        <button class="navButton" type="button">Giving &amp; Support <span class="chev">⌄</span></button>
+        <div class="dropdown">
+          <a href="sponsors.html">Sponsor</a>
+          <a href="https://boneshakerssocialclub.com/donate">Donate</a>
+        </div>
+      </div>
+
+      <div class="navItem">
+        <button class="navButton" type="button">Shop <span class="chev">⌄</span></button>
+        <div class="dropdown"><a href="marketplace.html">Marketplace</a></div>
+      </div>
+
+      <div class="navItem">
+        <button class="navButton" type="button">More <span class="chev">⌄</span></button>
+        <div class="dropdown"><a href="contact.html">Contact</a></div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="heroInner">
+    <h1 class="heroH1">About BoneShakers</h1>
+    <p class="heroSub">A Virginia Beach riding family — not an MC, not a brand — built on respect, service, and showing up when it matters.</p>
+  </div>
+</section>
+
+<main class="wrap">
+
+<section class="section">
+  <h2 class="title">Who We Are</h2>
+  <p class="lead">BoneShakers Social Club is a community of riders connected by friendship, accountability, and a shared commitment to community involvement.</p>
+  <div class="cards">
+    <div class="card"><strong>We Ride Together</strong><br>Organized rides, signature events, and a focus on safety, respect, and enjoyment.</div>
+    <div class="card"><strong>We Serve Together</strong><br>Charity rides, fundraisers, parades, and hands-on community support.</div>
+    <div class="card"><strong>We Stand Together</strong><br>Support for our members, their families, and those in need — on and off the road.</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section">
+  <h2 class="title">Our Story</h2>
+  <div class="story">
+    <div class="storyBox">
+      <p>Founded in Virginia Beach in 2005, BoneShakers began as a small group of riders who believed motorcycling should center on camaraderie, responsibility, and community.</p>
+      <p>The club grew steadily — not by chasing numbers or recognition — but by staying grounded in the values that brought us together.</p>
+      <p><strong>We are not an MC.</strong> We do not claim territory or hierarchy. We are a social riding family focused on enjoying the road and supporting one another.</p>
+    </div>
+    <div class="storyBox">
+      <p>Today, BoneShakers is proud to be part of the local fabric through rides, fundraisers, memorials, parades, and community partnerships.</p>
+      <p>Our legacy is measured in relationships built, causes supported, and moments shared — not titles or status.</p>
+      <p><em>Our commitment is simple: enjoy the ride, serve with intention, and be there when it counts.</em></p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section">
+  <h2 class="title">What We Believe</h2>
+  <p class="lead">These principles guide how we ride, how we serve, and how we treat one another.</p>
+  <div class="cards">
+    <div class="card">Respect — for the road, the club, and the community.</div>
+    <div class="card">Accountability — to each other and to the causes we support.</div>
+    <div class="card">Consistency — showing up isn’t optional; it’s who we are.</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section">
+  <div class="cta">
+    <h2>Want to Learn More or Ride With Us?</h2>
+    <p class="lead">Whether you’re curious about the club, interested in events, or considering membership — start here.</p>
+    <div class="btnrow">
+      <a class="btn" href="https://boneshakerssocialclub.com/event-calendar" target="_blank" rel="noopener">Explore Rides &amp; Events</a>
+      <a class="btn secondary" href="https://boneshakerssocialclub.com/join-the-boneshakers-1" target="_blank" rel="noopener">Membership Info</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<section class="recognition">
+  <h2>Recognition &amp; Appreciation</h2>
+  <p style="max-width:960px;color:#e2e2e2;font-size:18px;line-height:1.75;margin-bottom:14px;">The BoneShakers Social Club does not seek recognition — our focus is on service, brotherhood, and community support.</p>
+  <p style="max-width:960px;color:#d6d6d6;font-size:17px;line-height:1.75;margin-bottom:14px;">From time to time, our efforts are acknowledged by the organizations and communities we stand alongside.</p>
+  <p style="max-width:960px;color:#cfcfcf;font-size:17px;line-height:1.75;margin-bottom:46px;">These certificates represent partnerships built on trust, action, and follow-through.</p>
+
+  <div class="recognitionCard">
+    <img src="https://img1.wsimg.com/isteam/ip/a61a7501-5b4e-4a14-8b09-6b6b40dc23cf/1FF6C6E6-E9C3-4D6B-8675-09EEF8C26AD5.png/:/rs=w:1280,h:853" alt="Certificate of Appreciation – Annual Food Drive">
+    <div class="recTitle">Certificate of Appreciation</div>
+    <div class="recOrg">Hells Angels Beach Side — Annual Food Drive</div>
+    <div class="recDate">January 11, 2025</div>
+    <p>This recognition reflects a shared commitment to community outreach and direct action. Members of the BoneShakers Social Club worked alongside Hells Angels Beach Side to support local families through coordinated effort, accountability, and service where it mattered most.</p>
+  </div>
+
+  <div class="recognitionCard">
+    <img src="https://img1.wsimg.com/isteam/ip/a61a7501-5b4e-4a14-8b09-6b6b40dc23cf/ChatGPT%20Image%20Jan%2016%2C%202026%2C%2007_41_08%20AM.png/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:1280,h:853" alt="Certificate of Appreciation – Mutts With A Mission">
+    <div class="recTitle">Certificate of Appreciation</div>
+    <div class="recOrg">Mutts With A Mission — Blue Level Sponsor</div>
+    <div class="recDate">August 5, 2025</div>
+    <p>As a Blue Level Sponsor, the BoneShakers Social Club proudly supported Mutts With A Mission in their mission to train service dogs for veterans and first responders. This partnership reflects a shared belief in honoring service, loyalty, and sacrifice through action that truly matters.</p>
+    <div class="recDivider"></div>
+    <h3>Why This Recognition Matters</h3>
+    <p style="font-size:16px;line-height:1.75;color:#d9d9d9;margin-bottom:16px;">This recognition exists because of Athena.</p>
+    <p style="font-size:16px;line-height:1.75;color:#d9d9d9;margin-bottom:16px;">Athena was more than a companion—she was family. Her loyalty, quiet strength, and unconditional love left a lasting imprint on those who knew her. Like so many dogs who walk beside us through life, she represented comfort, presence, and an unbreakable bond.</p>
+    <p style="font-size:16px;line-height:1.75;color:#d9d9d9;">When Athena was lost, her memory became a reason to give back. What began as remembrance turned into purpose—supporting Mutts With A Mission and their work rescuing dogs and training them to serve veterans and first responders. This recognition stands as a reminder that one dog’s life can inspire meaningful, lasting action.</p>
+  </div>
+</section>
+
+<section class="founder">
+  <div class="founderInner">
+    <h2>In Honor of Our Founding President</h2>
+    <p class="founderIntro">A simple, lasting tribute to the man who helped build the foundation we stand on — and whose legacy continues in our brotherhood, our values, and every mile we ride together.</p>
+
+    <div class="founderImages">
+      <div class="founderImage">
+        <img src="https://img1.wsimg.com/isteam/ip/a61a7501-5b4e-4a14-8b09-6b6b40dc23cf/E18094EE-9027-4A5B-87B1-B93268717DE2.png/:/rs=w:984,h:984" alt="Founding President">
+        <p>Founding President — Forever remembered.</p>
+      </div>
+      <div class="founderImage">
+        <img src="https://img1.wsimg.com/isteam/ip/a61a7501-5b4e-4a14-8b09-6b6b40dc23cf/3EDB4720-CD9B-4078-B1F3-6D5D3333FBAD.png/:/rs=w:984,h:984" alt="Founding President with family">
+        <p>Leadership, family, and the spirit behind it all.</p>
+      </div>
+    </div>
+
+    <div class="tribute">
+      <p>He didn’t just help start this organization — he shaped its spirit. Through leadership, loyalty, and an unwavering commitment to doing things the right way, he laid the groundwork for what BoneShakers Social Club continues to build today.<br><br>We honor him not with words alone, but by staying true to the values he helped establish — riding together, supporting one another, and serving our community with purpose.</p>
+      <p class="sig">— BoneShakers Social Club</p>
+    </div>
+  </div>
+</section>
+
+<footer>© 2005–<span id="yr"></span> BoneShakers Social Club • Virginia Beach, VA</footer>
+
+<script>
+(function(){
+  var y=document.getElementById('yr');
+  if(y){y.textContent=new Date().getFullYear();}
+
+  var mobileBtn=document.getElementById('mobileNavButton');
+  var mainNav=document.getElementById('mainNav');
+  if(mobileBtn && mainNav){
+    mobileBtn.addEventListener('click',function(){
+      var open=mainNav.classList.toggle('mobileOpen');
+      mobileBtn.setAttribute('aria-expanded',open ? 'true':'false');
+    });
+  }
+
+  document.querySelectorAll('.navButton').forEach(function(btn){
+    btn.addEventListener('click',function(e){
+      e.stopPropagation();
+      var item=btn.closest('.navItem');
+      document.querySelectorAll('.navItem.open').forEach(function(other){
+        if(other!==item){other.classList.remove('open');}
+      });
+      item.classList.toggle('open');
+    });
+  });
+
+  document.addEventListener('click',function(){
+    document.querySelectorAll('.navItem.open').forEach(function(item){item.classList.remove('open');});
+  });
+})();
+</script>
+</body>
+</html>
