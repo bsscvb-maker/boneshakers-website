@@ -1,60 +1,56 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Events | BoneShakers Social Club</title><link rel="stylesheet" href="assets/css/style.css"></head><body>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Event Calendar | BoneShakers Social Club</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+.eventsHero{padding:58px 22px 34px;text-align:center;background:linear-gradient(180deg,rgba(193,53,46,.14),transparent);border-bottom:1px solid #2a2a2a}
+.eventsHero h1{margin:0;color:#C1352E;font-size:clamp(34px,6vw,56px)}
+.eventsHero p{max-width:760px;margin:12px auto 0;color:#cfcfcf;font-size:18px}
+.eventTools{max-width:1180px;margin:0 auto;padding:28px 22px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.eventTool{background:#111;border:1px solid #2a2a2a;border-radius:16px;padding:20px}
+.eventTool h2{font-size:20px;margin:0 0 8px}.eventTool p{color:#cfcfcf;margin:0 0 14px}
+.calendarFrameWrap{max-width:1180px;margin:0 auto;padding:0 22px 60px}
+.calendarFrameNote{color:#cfcfcf;font-size:14px;margin:0 0 12px}
+.calendarFrame{width:100%;height:1200px;border:1px solid #2a2a2a;border-radius:16px;background:#000}
+@media(max-width:900px){.eventTools{grid-template-columns:1fr}.calendarFrame{height:1400px}}
+</style>
+</head>
+<body>
 <header class="globalHeader">
-  <div class="brandTag">
-    <p class="brandName">Boneshakers</p>
-    <p class="brandLine">We ride for fun</p>
-    <p class="brandLine">We serve with purpose</p>
-    <p class="brandLine">We show up for each other</p>
-  </div>
+  <div class="brandTag"><p class="brandName">Boneshakers</p><p class="brandLine">We ride for fun</p><p class="brandLine">We serve with purpose</p><p class="brandLine">We show up for each other</p></div>
   <button class="mobileNavButton" id="mobileNavButton" type="button" aria-expanded="false">☰ Menu</button>
-  <div class="mainNavWrap">
-    <nav class="mainNav" id="mainNav" aria-label="Main navigation">
-      <div class="navItem"><a class="navLink" href="index.html">Home</a></div>
-      <div class="navItem">
-        <button class="navButton" type="button">About <span class="chev">⌄</span></button>
-        <div class="dropdown">
-          <a href="about.html">Our Story &amp; Mission</a>
-          <a href="board-of-directors.html">Board of Directors</a>
-          <a href="club-support-roles.html">Club Support Roles</a>
-          <a href="https://boneshakerssocialclub.com/gallery">Gallery &amp; Honor Wall</a>
-        </div>
-      </div>
-      <div class="navItem">
-        <button class="navButton" type="button">Rides &amp; Events <span class="chev">⌄</span></button>
-        <div class="dropdown"><a href="events.html">Event Calendar</a>
-          <a href="signature-rides.html">Signature Rides</a></div>
-      </div>
-      <div class="navItem">
-        <button class="navButton" type="button">Programs <span class="chev">⌄</span></button>
-        <div class="dropdown">
-          <a href="bikes-for-tykes.html">Bikes for Tykes</a>
-          <a href="impact.html">Community Impacts</a>
-        </div>
-      </div>
-      <div class="navItem">
-        <button class="navButton" type="button">Get Involved <span class="chev">⌄</span></button>
-        <div class="dropdown">
-          <a href="join.html">Join the BoneShakers</a>
-          <a href="contact.html">General Contact</a>
-        </div>
-      </div>
-      <div class="navItem">
-        <button class="navButton" type="button">Giving &amp; Support <span class="chev">⌄</span></button>
-        <div class="dropdown">
-          <a href="sponsors.html">Sponsor</a>
-          <a href="https://boneshakerssocialclub.com/donate">Donate</a>
-        </div>
-      </div>
-      <div class="navItem">
-        <button class="navButton" type="button">Shop <span class="chev">⌄</span></button>
-        <div class="dropdown"><a href="marketplace.html">Marketplace</a></div>
-      </div>
-      <div class="navItem">
-        <button class="navButton" type="button">More <span class="chev">⌄</span></button>
-        <div class="dropdown"><a href="contact.html">Contact</a></div>
-      </div>
-    </nav>
-  </div>
+  <div class="mainNavWrap"><nav class="mainNav" id="mainNav" aria-label="Main navigation">
+    <div class="navItem"><a class="navLink" href="index.html">Home</a></div>
+    <div class="navItem"><button class="navButton" type="button">About <span class="chev">⌄</span></button><div class="dropdown"><a href="about.html">Our Story and Mission</a><a href="club-code-of-conduct.html">Club Code of Conduct</a><a href="board-of-directors.html">Board of Directors</a><a href="club-support-roles.html">Club Support Roles</a></div></div>
+    <div class="navItem"><button class="navButton" type="button">Rides &amp; Events <span class="chev">⌄</span></button><div class="dropdown"><a href="events.html">Event Calendar</a><a href="signature-rides.html">Signature Rides</a><a href="annual-ride-waiver.html">Annual Ride Waiver</a><a href="guest-waiver.html">Guest Waiver</a><a href="ride-proposal-form.html">Ride Proposal Form</a></div></div>
+    <div class="navItem"><button class="navButton" type="button">Programs <span class="chev">⌄</span></button><div class="dropdown"><a href="impact.html">Community Impacts</a><a href="bikes-for-tykes.html">Bikes For Tykes</a><a href="gallery.html">Gallery</a><a href="lifers.html">Hall of Honor: Lifers</a><a href="charter-members.html">Charter Members</a><a href="presidential-history.html">BSSC Presidential History</a></div></div>
+    <div class="navItem"><button class="navButton" type="button">Get Involved <span class="chev">⌄</span></button><div class="dropdown"><a href="join.html">Join the Boneshakers</a><a href="volunteer.html">Volunteer with BSSC</a><a href="renew-membership.html">Renew Membership</a></div></div>
+    <div class="navItem"><button class="navButton" type="button">Giving &amp; Support <span class="chev">⌄</span></button><div class="dropdown"><a href="sponsors.html">Sponsor</a><a href="ride-partners.html">Ride Partners</a><a href="funding-requests.html">Funding Requests</a></div></div>
+    <div class="navItem"><button class="navButton" type="button">Contact <span class="chev">⌄</span></button><div class="dropdown"><a href="contact.html">General Contact</a></div></div>
+    <div class="navItem"><button class="navButton" type="button">Shop <span class="chev">⌄</span></button><div class="dropdown"><a href="marketplace.html">Marketplace</a></div></div>
+    <div class="navItem"><a class="navLink" href="bike-night.html">Bike Night</a></div>
+  </nav></div>
 </header>
-<main><section class="page-hero"><p class="eyebrow">BONESHAKERS SOCIAL CLUB</p><h1>Events</h1></section><section class="content"><h2>Ride. Gather. Give Back.</h2><p>This will become the central calendar for club rides, bike nights, fundraisers and community events.</p><div class="notice"><strong>Build in progress</strong><p>We are migrating and improving this section while the current BoneShakers website remains live.</p></div><a class="btn" href="index.html">← Back to Home</a></section></main>
-<footer><div><strong>BoneShakers Social Club</strong><p>We ride for fun. We serve with purpose. We show up for each other.</p></div><small>New website build in progress.</small></footer><script src="assets/js/main.js"></script></body></html>
+<section class="eventsHero">
+  <h1>Events</h1>
+  <p>Rides, meetings, fundraisers, community events, and the gatherings that keep the BoneShakers family connected.</p>
+</section>
+
+<section class="eventTools">
+  <div class="eventTool"><h2>Signature Rides</h2><p>See our recurring rides, parades, traditions, and annual club events.</p><a class="btn" href="signature-rides.html">View Signature Rides</a></div>
+  <div class="eventTool"><h2>Ride Waivers</h2><p>Complete the annual member waiver or guest waiver before riding with the club.</p><a class="btn" href="annual-ride-waiver.html">Annual Ride Waiver</a></div>
+  <div class="eventTool"><h2>Propose a Ride</h2><p>Have a ride idea for the club? Use the ride proposal form.</p><a class="btn" href="ride-proposal-form.html">Ride Proposal Form</a></div>
+</section>
+
+<section class="calendarFrameWrap">
+  <p class="calendarFrameNote">Current live BoneShakers event calendar:</p>
+  <iframe class="calendarFrame" src="https://boneshakerssocialclub.com/event-calendar" title="BoneShakers current event calendar" loading="lazy"></iframe>
+</section>
+
+<footer><div><strong>BoneShakers Social Club</strong><p>We ride for fun. We serve with purpose. We show up for each other.</p></div></footer>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
