@@ -1,0 +1,929 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>BoneShakers: Rides, Parades & Events</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    :root{
+      --white:#FFFFFF;
+      --red:#C1352E;         /* Club dark red */
+      --bg:#000000;          /* Page background */
+      --panel1:#111111;      /* Month panel A */
+      --panel2:#1a1a1a;      /* Month panel B */
+      --border:#2A2A2A;
+      --muted:#BFBFBF;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --maxw: 1050px;
+      --item:#0d0d0d;
+      --item-border:#242424;
+    }
+
+    html,body{
+      background:var(--bg);
+      color:var(--white);
+      margin:0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+      line-height:1.45;
+    }
+
+    .wrap{
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:24px clamp(16px, 3vw, 28px);
+    }
+
+    /* Header */
+    .hero{
+      background: linear-gradient(180deg, rgba(193,53,46,.12), transparent 70%);
+      border-bottom: 1px solid var(--border);
+      text-align:center;
+    }
+    .title{
+      font-size: clamp(28px, 5vw, 40px);
+      margin: 12px 0 16px;
+      color: var(--red);
+      letter-spacing:.3px;
+      font-weight: 800;
+    }
+
+    /* Month grid */
+    .months{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:14px;
+      margin-top:20px;
+    }
+    @media (min-width: 820px){
+      .months{ grid-template-columns: 1fr 1fr; }
+    }
+
+    .month{
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .month:nth-child(odd){ background: var(--panel1); }
+    .month:nth-child(even){ background: var(--panel2); }
+
+    .month-head{
+      padding: 16px 18px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      border-bottom:1px solid var(--border);
+    }
+    .m-label{
+      font-weight:800;
+      font-size: 18px;
+      letter-spacing:.4px;
+      margin-right:auto;
+    }
+
+    .month-body{ padding: 10px 18px 16px; }
+
+    /* Event list */
+    .list{
+      margin:0; padding:0; list-style:none;
+      display:flex; flex-direction:column; gap:10px;
+    }
+
+    .item-btn{
+      width:100%;
+      text-align:left;
+      background: var(--item);
+      border: 1px solid var(--item-border);
+      color: var(--white);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      display:flex; align-items:center; gap:10px;
+      cursor:pointer;
+      font-weight:700; letter-spacing:.2px;
+      transition: border-color .15s ease, box-shadow .15s ease, transform .03s ease;
+    }
+    .item-btn:focus-visible{
+      outline: 2px solid var(--red);
+      outline-offset: 2px;
+    }
+    .item-btn:hover{ border-color:#333; }
+    .item-btn:active{ transform: translateY(1px); }
+
+    .dot{
+      flex:0 0 auto;
+      width:8px; height:8px; border-radius:50%;
+      background: var(--red);
+      box-shadow: 0 0 0 4px rgba(193,53,46,.15);
+    }
+    .label{ flex:1 1 auto; }
+
+    .chev{
+      flex:0 0 auto;
+      width:10px; height:10px;
+      border-right:2px solid var(--muted);
+      border-bottom:2px solid var(--muted);
+      transform: rotate(-45deg);
+      transition: transform .18s ease, border-color .18s ease;
+      margin-left:6px;
+    }
+    .item-btn[aria-expanded="true"] .chev{
+      transform: rotate(45deg);
+      border-color: var(--white);
+    }
+
+    .desc{
+      display:none;
+      padding: 10px 14px 14px 30px;
+      color: var(--muted);
+      border-left: 3px solid rgba(193,53,46,.35);
+      border-right: 1px solid var(--item-border);
+      border-bottom: 1px solid var(--item-border);
+      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+      background: #0b0b0b;
+    }
+    .desc.show{ display:block; }
+
+    @media (prefers-reduced-motion: no-preference){
+      .desc{ animation: fade .18s ease; }
+      @keyframes fade{ from{opacity:0} to{opacity:1} }
+    }
+
+    .desc p{ margin: 6px 0; }
+    .desc .meta{ font-size:.95rem; color:#d0d0d0; }
+    .desc .headline{ color:#ffffff; font-weight:800; }
+  
+/* BoneShakers shared fixed navigation */
+.bsscGlobalHeader{position:fixed;top:0;left:0;right:0;width:100%;z-index:999;background:#000;color:#fff;border-bottom:1px solid rgba(255,255,255,.08);font-family:Verdana,Arial,sans-serif}
+.bsscBrandTag{max-width:1180px;margin:0 auto;text-align:center;padding:12px 20px 16px}
+.bsscBrandTag .bsscBrandName{font-size:27px;line-height:1.15;margin:0 0 5px}
+.bsscBrandTag .bsscBrandLine{font-size:25px;line-height:1.25;margin:0}
+.bsscBrandTag .bsscBrandLine + .bsscBrandLine{margin-top:2px}
+.bsscNavWrap{border-top:1px solid rgba(255,255,255,.04)}
+.bsscMainNav{max-width:1180px;margin:0 auto;display:flex;justify-content:center;align-items:center;gap:6px;padding:0 18px}
+.bsscNavItem{position:relative}
+.bsscNavLink,.bsscNavButton{display:flex;align-items:center;gap:7px;padding:17px 16px;color:#fff;background:transparent;border:0;font:inherit;font-size:11.5pt;letter-spacing:1.8px;text-transform:uppercase;cursor:pointer;white-space:nowrap;text-decoration:none}
+.bsscNavLink:hover,.bsscNavButton:hover{color:#cfcfcf}
+.navChev{font-size:12px;line-height:1;transition:transform .2s ease}
+.bsscNavItem.open .navChev{transform:rotate(180deg)}
+.bsscDropdown{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);min-width:230px;background:#0b0b0d;border:1px solid rgba(255,255,255,.14);box-shadow:0 16px 40px rgba(0,0,0,.65);z-index:1000;padding:8px}
+.bsscNavItem.open .bsscDropdown{display:block}
+.bsscDropdown a{display:block;padding:11px 12px;border-radius:6px;color:#fff;text-decoration:none;font-size:10.8pt;letter-spacing:.2px}
+.bsscDropdown a:hover{background:rgba(255,255,255,.07)}
+.bsscMobileNavButton{display:none;width:calc(100% - 36px);margin:10px 18px 14px;padding:12px 14px;background:#111;color:#fff;border:1px solid rgba(255,255,255,.18);border-radius:10px;font-weight:700;text-align:left}
+body.bssc-fixed-header{padding-top:var(--bssc-header-h,0px)}
+@media(max-width:980px){
+ .bsscBrandTag .bsscBrandName{font-size:23px}.bsscBrandTag .bsscBrandLine{font-size:21px}
+ .bsscMobileNavButton{display:block}
+ .bsscMainNav{display:none;flex-direction:column;align-items:stretch;padding:0 18px 16px}
+ .bsscMainNav.mobileOpen{display:flex}
+ .bsscNavItem{width:100%}
+ .bsscNavLink,.bsscNavButton{width:100%;justify-content:space-between;padding:13px 8px;border-bottom:1px solid rgba(255,255,255,.08)}
+ .bsscDropdown{position:static;transform:none;min-width:0;border:0;border-left:2px solid #C1352E;box-shadow:none;background:#09090b;margin:0 0 6px 8px;padding:4px 8px}
+}
+
+</style>
+</head>
+<body>
+<header class="bsscGlobalHeader">
+  <div class="bsscBrandTag">
+    <p class="bsscBrandName">Boneshakers</p>
+    <p class="bsscBrandLine">We ride for fun</p>
+    <p class="bsscBrandLine">We serve with purpose</p>
+    <p class="bsscBrandLine">We show up for each other</p>
+  </div>
+  <button class="bsscMobileNavButton" id="bsscMobileNavButton" type="button" aria-expanded="false">☰ Menu</button>
+  <div class="bsscNavWrap">
+    <nav class="bsscMainNav" id="bsscMainNav" aria-label="Main navigation">
+      <div class="bsscNavItem"><a class="bsscNavLink" href="index.html">Home</a></div>
+      <div class="bsscNavItem">
+        <button class="bsscNavButton" type="button">About <span class="navChev">⌄</span></button>
+        <div class="bsscDropdown">
+          <a href="about.html">Our Story &amp; Mission</a>
+          <a href="https://boneshakerssocialclub.com/board-of-directors">Board of Directors</a>
+          <a href="https://boneshakerssocialclub.com/club-support-roles">Club Support Roles</a>
+          <a href="https://boneshakerssocialclub.com/gallery">Gallery &amp; Honor Wall</a>
+        </div>
+      </div>
+      <div class="bsscNavItem">
+        <button class="bsscNavButton" type="button">Rides &amp; Events <span class="navChev">⌄</span></button>
+        <div class="bsscDropdown">
+          <a href="events.html">Event Calendar</a>
+          <a href="signature-rides.html">Signature Rides</a>
+          <a href="index.html#meeting-details">General Meeting</a>
+        </div>
+      </div>
+      <div class="bsscNavItem">
+        <button class="bsscNavButton" type="button">Programs <span class="navChev">⌄</span></button>
+        <div class="bsscDropdown"><a href="bikes-for-tykes.html">Bikes for Tykes</a><a href="impact.html">Community Impacts</a></div>
+      </div>
+      <div class="bsscNavItem">
+        <button class="bsscNavButton" type="button">Get Involved <span class="navChev">⌄</span></button>
+        <div class="bsscDropdown"><a href="join.html">Join the BoneShakers</a><a href="contact.html">General Contact</a></div>
+      </div>
+      <div class="bsscNavItem">
+        <button class="bsscNavButton" type="button">Giving &amp; Support <span class="navChev">⌄</span></button>
+        <div class="bsscDropdown"><a href="sponsors.html">Sponsor</a><a href="https://boneshakerssocialclub.com/donate">Donate</a></div>
+      </div>
+      <div class="bsscNavItem"><button class="bsscNavButton" type="button">Shop <span class="navChev">⌄</span></button><div class="bsscDropdown"><a href="marketplace.html">Marketplace</a></div></div>
+      <div class="bsscNavItem"><button class="bsscNavButton" type="button">More <span class="navChev">⌄</span></button><div class="bsscDropdown"><a href="contact.html">Contact</a></div></div>
+    </nav>
+  </div>
+</header>
+  <header class="hero">
+    <div class="wrap">
+      <h1 class="title">BoneShakers: Rides, Parades &amp; Events</h1>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="months">
+
+      <!-- =============== JANUARY =============== -->
+      <div class="month">
+        <div class="month-head"><span class="m-label">January</span></div>
+        <div class="month-body">
+          <ul class="list">
+            <!-- General Meeting -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">📅 BoneShakers General Meeting</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                <p class="meta"><strong>Duration:</strong> 45 min<br>
+                <strong>Public:</strong> Open to All<br>
+                <strong>When:</strong> First Tuesday of every month<br>
+                <strong>Where:</strong> AJ Gators Sports Bar &amp; Grill – 1993 Sandbridge Rd, Virginia Beach, VA 23456<br>
+
+                <strong>Time:</strong> 6:30 PM</p>
+                <p class="headline">🔥 BoneShakers General Meeting 🔥</p>
+                <p>It’s that time again, family. General Meeting night at AJ Gators Come out, grab some food &amp; drinks, and let’s handle business while keeping the brotherhood and sisterhood strong.</p>
+                <p>Members — your voice matters.<br>
+                Potential new members — this is the best way to learn what we’re about.<br>
+                Guests &amp; newcomers — you’re always welcome to join us.</p>
+              </div>
+            </li>
+
+            <!-- Bike Night -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">🏍️ BoneShakers Bike Night</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                <p class="meta"><strong>Where:</strong> AJ Gators Sports Bar &amp; Grill<br>
+
+                <strong>Duration:</strong> 2 hr<br>
+                <strong>Public:</strong> Open to All</p>
+                <p class="headline">Join Us for Bike Night at AJ Gators Sports Bar &amp; Grill!</p>
+
+                <p>Looking for a laid-back evening with good food, cold drinks, and even better company? Ride over and hang out with the BoneShakers Social Club for Bike Night at AJ Gators Sports Bar &amp; Grill. Enjoy drink specials, food deals, and a crowd that knows how to have a good time.</p>
+
+                <p>Membership isn’t required—just roll in, grab a bite, and enjoy the night with fellow riders and friends. All bikes, all people, all vibes welcome.</p>
+              </div>
+            </li>
+
+            <!-- Q1 Dinner Ride -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">🍽️ Quarterly Club Dinner Rides</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                Every quarter, our members meet up for a ride to a chosen destination where we sit down for dinner together as a club. It’s a chance to share good food, great conversations, and the brotherhood and sisterhood that make our club strong. At each dinner, one lucky member wins their meal for free, but the real prize is the time spent hanging out, laughing, and enjoying the ride as a family.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- =============== FEBRUARY =============== -->
+      <div class="month">
+        <div class="month-head"><span class="m-label">February</span></div>
+        <div class="month-body">
+          <ul class="list">
+            <!-- General Meeting -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">📅 BoneShakers General Meeting</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                <p class="meta"><strong>Duration:</strong> 45 min<br>
+                <strong>Public:</strong> Open to All<br>
+                <strong>When:</strong> First Tuesday of every month<br>
+                <strong>Where:</strong> AJ Gators Sports Bar &amp; Grill – 1993 Sandbridge Rd, Virginia Beach, VA 23456<br>
+
+                <strong>Time:</strong> 6:30 PM</p>
+                <p class="headline">🔥 BoneShakers General Meeting 🔥</p>
+                <p>It’s that time again, family. General Meeting night at AJ Gators Come out, grab some food &amp; drinks, and let’s handle business while keeping the brotherhood and sisterhood strong.</p>
+              </div>
+            </li>
+
+            <!-- Bike Night -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">🏍️ BoneShakers Bike Night</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                <p class="meta"><strong>Where:</strong> AJ Gators Sports Bar &amp; Grill<br>
+
+                <strong>Duration:</strong> 2 hr<br>
+                <strong>Public:</strong> Open to All</p>
+                <p class="headline">Join Us for Bike Night at AJ Gators Sports Bar &amp; Grill!</p>
+
+                <p>Looking for a laid-back evening with good food, cold drinks, and even better company? Ride over and hang out with the BoneShakers Social Club for Bike Night at AJ Gators Sports Bar &amp; Grill. Enjoy drink specials, food deals, and a crowd that knows how to have a good time.</p>
+
+              </div>
+            </li>
+
+            <!-- Blessing of the Bikes -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">🙏 Blessing of the Bikes</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                Each year, BoneShakers hosts the Blessing of the Bikes — a free and open-to-the-public ride where we gather, ride to a private spot, and take a moment to bless the bikes for a safe riding season ahead. Every rider receives a small token to mark the occasion. It’s a simple, meaningful tradition that brings riders and friends together at the start of the year.
+              </div>
+            </li>
+
+            <!-- Frosty Ball-Gina Ride -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">❄️ Frosty Ball-Gina Ride</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                Following the Blessing of the Bikes, we roll into the Frosty Ball-Gina Ride. The name is a playful nod to the chilly February weather—riders braving the cold to kick off the season. A small fee supports the betterment of the club, and we wrap up at a chosen restaurant to warm up, share a meal, and enjoy time together.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- =============== MARCH =============== -->
+      <div class="month">
+        <div class="month-head"><span class="m-label">March</span></div>
+        <div class="month-body">
+          <ul class="list">
+            <!-- General Meeting -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">📅 BoneShakers General Meeting</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                <p class="meta"><strong>Duration:</strong> 45 min<br>
+                <strong>Public:</strong> Open to All<br>
+                <strong>When:</strong> First Tuesday of every month<br>
+                <strong>Where:</strong> AJ Gators Sports Bar &amp; Grill – 1993 Sandbridge Rd, Virginia Beach, VA 23456<br>
+
+                <strong>Time:</strong> 6:30 PM</p>
+                <p class="headline">🔥 BoneShakers General Meeting 🔥</p>
+                <p>It’s that time again, family. General Meeting night at AJ Gators Come out, grab some food &amp; drinks, and let’s handle business while keeping the brotherhood and sisterhood strong.</p>
+              </div>
+            </li>
+
+            <!-- Bike Night -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">🏍️ BoneShakers Bike Night</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                <p class="meta"><strong>Where:</strong> AJ Gators Sports Bar &amp; Grill<br>
+
+                <strong>Duration:</strong> 2 hr<br>
+                <strong>Public:</strong> Open to All</p>
+                <p class="headline">Join Us for Bike Night at AJ Gators Sports Bar &amp; Grill!</p>
+
+                <p>Looking for a laid-back evening with good food, cold drinks, and even better company? Ride over and hang out with the BoneShakers Social Club for Bike Night at 615 Bar &amp; Grill.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- =============== APRIL =============== -->
+      <div class="month">
+        <div class="month-head"><span class="m-label">April</span></div>
+        <div class="month-body">
+          <ul class="list">
+            <!-- General Meeting -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">📅 BoneShakers General Meeting</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                <p class="meta"><strong>Duration:</strong> 45 min<br>
+                <strong>Public:</strong> Open to All<br>
+                <strong>When:</strong> First Tuesday of every month<br>
+                <strong>Where:</strong> AJ Gators Sports Bar &amp; Grill – 1993 Sandbridge Rd, Virginia Beach, VA 23456<br>
+
+                <strong>Time:</strong> 6:30 PM</p>
+                <p class="headline">🔥 BoneShakers General Meeting 🔥</p>
+                <p>It’s that time again, family. General Meeting night at AJ Gators</p>
+              </div>
+            </li>
+
+            <!-- Bike Night -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">🏍️ BoneShakers Bike Night</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                <p class="meta"><strong>Where:</strong> AJ Gators Sports Bar &amp; Grill<br>
+
+                <strong>Duration:</strong> 2 hr<br>
+                <strong>Public:</strong> Open to All</p>
+                <p class="headline">Join Us for Bike Night at AJ Gators Sports Bar &amp; Grill!</p>
+
+                <p>Ride over and hang out with the BoneShakers Social Club for Bike Night at 615 Bar &amp; Grill.</p>
+              </div>
+            </li>
+
+            <!-- Q2 Dinner Ride -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">🍽️ Quarterly Club Dinner Rides</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                Every quarter, our members meet up for a ride to a chosen destination where we sit down for dinner together as a club.
+              </div>
+            </li>
+
+            <!-- Big Lick Bike, Car & Truck Show -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">🏆 Big Lick Bike, Car &amp; Truck Show</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                This year’s Car, Bike, and Truck Show is more than just an event—it is a living tribute to our founder, Big Lick. His vision, passion, and dedication laid the foundation for the BoneShakers Social Club. What began as his dream has grown into a brotherhood and sisterhood bound by riding, community, and giving back. Big Lick believed in the power of two wheels and four to bring people together. He inspired us to not only ride but to build a family where loyalty, camaraderie, and service to the community come first. His spirit is alive in every mile we ride, every fundraiser we host, and every bond we share. As we gather at this year’s show—surrounded by the roar of engines, the shine of chrome, and the unity of bikers, drivers, and riders alike—we dedicate this day to him. May the Car, Bike, and Truck Show always carry forward Big Lick’s legacy: celebrating the machines we love, the people we ride with, and the communities we serve.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- =============== MAY =============== -->
+      <div class="month">
+        <div class="month-head"><span class="m-label">May</span></div>
+        <div class="month-body">
+          <ul class="list">
+            <!-- General Meeting -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">📅 BoneShakers General Meeting</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                <p class="meta"><strong>Duration:</strong> 45 min<br>
+                <strong>Public:</strong> Open to All<br>
+                <strong>When:</strong> First Tuesday of every month<br>
+                <strong>Where:</strong> AJ Gators Sports Bar &amp; Grill – 1993 Sandbridge Rd, Virginia Beach, VA 23456<br>
+
+                <strong>Time:</strong> 6:30 PM</p>
+                <p class="headline">🔥 BoneShakers General Meeting 🔥</p>
+              </div>
+            </li>
+
+            <!-- Bike Night -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">🏍️ BoneShakers Bike Night</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                <p class="meta"><strong>Where:</strong> AJ Gators Sports Bar &amp; Grill<br>
+
+                <strong>Duration:</strong> 2 hr<br>
+                <strong>Public:</strong> Open to All</p>
+                <p class="headline">Join Us for Bike Night at AJ Gators Sports Bar &amp; Grill!</p>
+
+              </div>
+            </li>
+
+            <!-- Biker Bash -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">⛺🎶🏍️ Biker Bash</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                Three unforgettable days of camping, riding, and pure biker brotherhood and sisterhood. From sunrise rides to late-night campfires, Biker Bash is where every kind of motorized toy comes to play—mini bikes, ATVs, scooters, bar stools, golf carts, even mini jeeps. Each night the campground comes alive with the sound of great local bands, keeping the energy high and the vibes strong. All local motorcycle clubs roll in, bringing together riders from every corner to celebrate good times, good music, and unbeatable camaraderie under the stars.
+              </div>
+            </li>
+
+            <!-- Salt Dawg MRC Poker Run (Support) -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">♠️ Salt Dawg MRC Poker Run (Support)</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                Classic poker-run fun with stops that showcase local favorites. We ride staggered, keep formations tight, and make it friendly for newer riders. Funds raised support causes close to home. Keep your best card face down and your visor up.
+                <br><br>
+                There is a Fisher House located at every major military medical center to assist families in need and to ensure that they are provided with the comforts of home in a supportive environment. Annually, the Fisher House Program serves more than 11,000 families and has made available nearly 3 million days of lodging to family members since the program originated in 1990. There is no charge for families to stay at a Fisher House operated by the Department of Veterans Affairs. The Fisher House Foundation uses donations to support the individual Fisher Houses which are operated by the Navy, Army, and Air Force around the country.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- =============== JUNE =============== -->
+      <div class="month">
+        <div class="month-head"><span class="m-label">June</span></div>
+        <div class="month-body">
+          <ul class="list">
+            <!-- General Meeting -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">📅 BoneShakers General Meeting</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                <p class="meta"><strong>Duration:</strong> 45 min<br>
+                <strong>Public:</strong> Open to All<br>
+                <strong>When:</strong> First Tuesday of every month<br>
+                <strong>Where:</strong> AJ Gators Sports Bar &amp; Grill – 1993 Sandbridge Rd, Virginia Beach, VA 23456<br>
+
+                <strong>Time:</strong> 6:30 PM</p>
+                <p class="headline">🔥 BoneShakers General Meeting 🔥</p>
+              </div>
+            </li>
+
+            <!-- Bike Night -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">🏍️ BoneShakers Bike Night</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                <p class="meta"><strong>Where:</strong> AJ Gators Sports Bar &amp; Grill<br>
+
+                <strong>Duration:</strong> 2 hr<br>
+                <strong>Public:</strong> Open to All</p>
+                <p class="headline">Join Us for Bike Night at AJ Gators Sports Bar &amp; Grill!</p>
+
+              </div>
+            </li>
+
+            <!-- Maci's Ride (Support) -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">🧩 Maci's Ride (Support)</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                Maci’s Ride is an annual charity motorcycle ride dedicated to supporting the Autism community across South Hampton Roads and surrounding areas. Hosted by our 501(c)(3) nonprofit organization, this event brings riders together to raise funds, spread awareness, and strengthen community bonds. Every mile ridden and every dollar raised goes directly toward programs and services that make a difference in the lives of individuals and families impacted by Autism.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- =============== JULY =============== -->
+      <div class="month">
+        <div class="month-head"><span class="m-label">July</span></div>
+        <div class="month-body">
+          <ul class="list">
+            <!-- General Meeting -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">📅 BoneShakers General Meeting</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                <p class="meta"><strong>Duration:</strong> 45 min<br>
+                <strong>Public:</strong> Open to All<br>
+                <strong>When:</strong> First Tuesday of every month<br>
+                <strong>Where:</strong> AJ Gators Sports Bar &amp; Grill – 1993 Sandbridge Rd, Virginia Beach, VA 23456<br>
+
+                <strong>Time:</strong> 6:30 PM</p>
+                <p class="headline">🔥 BoneShakers General Meeting 🔥</p>
+              </div>
+            </li>
+
+            <!-- Bike Night -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">🏍️ BoneShakers Bike Night</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                <p class="meta"><strong>Where:</strong> AJ Gators Sports Bar &amp; Grill<br>
+
+                <strong>Duration:</strong> 2 hr<br>
+                <strong>Public:</strong> Open to All</p>
+                <p class="headline">Join Us for Bike Night at AJ Gators Sports Bar &amp; Grill!</p>
+
+              </div>
+            </li>
+
+            <!-- Q3 Dinner Ride -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">🍽️ Quarterly Club Dinner Rides</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                Every quarter, our members meet up for a ride to a chosen destination where we sit down for dinner together as a club.
+              </div>
+            </li>
+
+            <!-- Bikes for Tykes Christmas in July -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">🎄 Bikes for Tykes Christmas in July</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                Since 2015, our motto has been simple: Two Wheels, One Mission. This mid-year edition keeps the giving spirit rolling by raising funds to put kids on two wheels. Every dollar helps us purchase bikes for children in our local neighborhoods—because freedom, confidence, and that first-bicycle joy shouldn’t have a season.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- =============== AUGUST =============== -->
+      <div class="month">
+        <div class="month-head"><span class="m-label">August</span></div>
+      <div class="month-body">
+        <ul class="list">
+          <!-- General Meeting -->
+          <li>
+            <button class="item-btn" aria-expanded="false">
+              <span class="dot"></span><span class="label">📅 BoneShakers General Meeting</span><span class="chev" aria-hidden="true"></span>
+            </button>
+            <div class="desc" hidden>
+              <p class="meta"><strong>Duration:</strong> 45 min<br>
+              <strong>Public:</strong> Open to All<br>
+              <strong>When:</strong> First Tuesday of every month<br>
+              <strong>Where:</strong> AJ Gators Sports Bar &amp; Grill – 1993 Sandbridge Rd, Virginia Beach, VA 23456<br>
+
+              <strong>Time:</strong> 6:30 PM</p>
+              <p class="headline">🔥 BoneShakers General Meeting 🔥</p>
+            </div>
+          </li>
+
+          <!-- Bike Night -->
+          <li>
+            <button class="item-btn" aria-expanded="false">
+              <span class="dot"></span><span class="label">🏍️ BoneShakers Bike Night</span><span class="chev" aria-hidden="true"></span>
+            </button>
+            <div class="desc" hidden>
+              <p class="meta"><strong>Where:</strong> AJ Gators Sports Bar &amp; Grill<br>
+
+              <strong>Duration:</strong> 2 hr<br>
+              <strong>Public:</strong> Open to All</p>
+              <p class="headline">Join Us for Bike Night at AJ Gators Sports Bar &amp; Grill!</p>
+
+            </div>
+          </li>
+
+          <!-- Bug Run (FIXED formatting) -->
+          <li>
+            <button class="item-btn" aria-expanded="false">
+              <span class="dot"></span><span class="label">🐞 Bug Run</span><span class="chev" aria-hidden="true"></span>
+            </button>
+            <div class="desc" hidden>
+              <p>The Bug Run is one of our club’s most unique and entertaining traditions. Riders head out into the backroads and swampy stretches of Virginia Beach’s Pungo area, known for its winding lanes, open fields, and bug-heavy air.</p>
+              <p>Participants wear stickers on their vests or helmets as targets, and whoever collects the most bug splatters and marks along the route takes home the win. Bring a passenger and get a couple of extra patches—boosting your chances to rack up even more bug hits and increase the odds of winning.</p>
+              <p>It’s part competition, part comedy, and all camaraderie—an event that mixes backwoods adventure with laughter as members compare their “battle scars” at the finish line. The Bug Run celebrates the fun side of riding while keeping alive the playful spirit that makes our club more than just a group of bikers—it’s family.</p>
+            </div>
+          </li>
+
+          <!-- Extortion 17 Memorial Ride Support -->
+          <li>
+            <button class="item-btn" aria-expanded="false">
+              <span class="dot"></span><span class="label">🎖️ Extortion 17 Memorial Ride Support</span><span class="chev" aria-hidden="true"></span>
+            </button>
+            <div class="desc" hidden>
+              Ride in Virginia Beach is an annual memorial motorcycle ride that honors the 31 service members, including 17 Navy SEALs from the area, who died in a 2011 helicopter crash in Afghanistan. The event, hosted by groups like the Virginia Patriot Guard, involves a 31-mile ride with each mile representing one of the fallen heroes, often including a stop to read their names and support the 31Heroes Project, a 501(c)(3) non-profit organization that supports Gold Star families and veterans' mental health treatment.
+            </div>
+          </li>
+        </ul>
+      </div>
+      </div>
+
+      <!-- =============== SEPTEMBER =============== -->
+      <div class="month">
+        <div class="month-head"><span class="m-label">September</span></div>
+        <div class="month-body">
+          <ul class="list">
+            <!-- General Meeting -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">📅 BoneShakers General Meeting</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                <p class="meta"><strong>Duration:</strong> 45 min<br>
+                <strong>Public:</strong> Open to All<br>
+                <strong>When:</strong> First Tuesday of every month<br>
+                <strong>Where:</strong> AJ Gators Sports Bar &amp; Grill – 1993 Sandbridge Rd, Virginia Beach, VA 23456<br>
+
+                <strong>Time:</strong> 6:30 PM</p>
+                <p class="headline">🔥 BoneShakers General Meeting 🔥</p>
+              </div>
+            </li>
+
+            <!-- Bike Night -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">🏍️ BoneShakers Bike Night</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                <p class="meta"><strong>Where:</strong> AJ Gators Sports Bar &amp; Grill<br>
+
+                <strong>Duration:</strong> 2 hr<br>
+                <strong>Public:</strong> Open to All</p>
+                <p class="headline">Join Us for Bike Night at AJ Gators Sports Bar &amp; Grill!</p>
+
+              </div>
+            </li>
+
+            <!-- Pink Ride (Support) -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">🎀 Pink Ride (Support)</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                Our breast cancer awareness ride brings the community together in a wave of pink. We ride to honor fighters and survivors and to raise funds for support services. The route is accessible, the pace is considerate, and the message is powerful. Bring your pink, bring your heart.
+              </div>
+            </li>
+
+            <!-- Neptune Festival Parade (Support) -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">🎊 Neptune Festival Parade (Support)</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                A showcase moment for BoneShakers in front of the whole city. Uniform staging, tight formations, and top-tier manners are non-negotiable. We wave, we smile, and we represent our mission to ride and give back. Families line the streets—let’s make them proud.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- =============== OCTOBER =============== -->
+      <div class="month">
+        <div class="month-head"><span class="m-label">October</span></div>
+        <div class="month-body">
+          <ul class="list">
+            <!-- General Meeting -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">📅 BoneShakers General Meeting</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                <p class="meta"><strong>Duration:</strong> 45 min<br>
+                <strong>Public:</strong> Open to All<br>
+                <strong>When:</strong> First Tuesday of every month<br>
+                <strong>Where:</strong> AJ Gators Sports Bar &amp; Grill – 1993 Sandbridge Rd, Virginia Beach, VA 23456<br>
+
+                <strong>Time:</strong> 6:30 PM</p>
+                <p class="headline">🔥 BoneShakers General Meeting 🔥</p>
+              </div>
+            </li>
+
+            <!-- Bike Night -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">🏍️ BoneShakers Bike Night</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                <p class="meta"><strong>Where:</strong> AJ Gators Sports Bar &amp; Grill<br>
+
+                <strong>Duration:</strong> 2 hr<br>
+                <strong>Public:</strong> Open to All</p>
+                <p class="headline">Join Us for Bike Night at AJ Gators Sports Bar &amp; Grill!</p>
+
+              </div>
+            </li>
+
+            <!-- Q4 Dinner Ride -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">🍽️ Quarterly Club Dinner Rides</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                Every quarter, our members meet up for a ride to a chosen destination where we sit down for dinner together as a club.
+              </div>
+            </li>
+
+            <!-- Bikes for Tykes Poker Run -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">🃏 Bikes for Tykes Poker Run</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                Since 2015, our motto has been simple: Two Wheels, One Mission. For over a decade, this event has fueled our mission of giving back by putting kids on two wheels. Through the generosity of riders, sponsors, and supporters, we’ve raised the funds needed to make bicycle ownership possible for countless children across our local neighborhoods. Every bike purchased is more than just a gift—it’s freedom, confidence, and the pure joy of the open road. The Bikes for Tykes Poker Run isn’t just about the ride. It’s about rallying together as a community, ensuring kids experience the same excitement and independence that first bike brings. With every hand played and every mile ridden, we keep the wheels turning for the next generation.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- =============== NOVEMBER =============== -->
+      <div class="month">
+        <div class="month-head"><span class="m-label">November</span></div>
+        <div class="month-body">
+          <ul class="list">
+            <!-- General Meeting -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">📅 BoneShakers General Meeting</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                <p class="meta"><strong>Duration:</strong> 45 min<br>
+                <strong>Public:</strong> Open to All<br>
+                <strong>When:</strong> First Tuesday of every month<br>
+                <strong>Where:</strong> AJ Gators Sports Bar &amp; Grill – 1993 Sandbridge Rd, Virginia Beach, VA 23456<br>
+
+                <strong>Time:</strong> 6:30 PM</p>
+                <p class="headline">🔥 BoneShakers General Meeting 🔥</p>
+              </div>
+            </li>
+
+            <!-- Veterans Day Parade (Support) -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">🇺🇸⭐ Veterans Day Parade (Support)</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                A solemn, grateful day where we honor service above self. We arrive early, ride with precision, and keep conduct beyond reproach. Volunteers help with flags, banners, and staging. Thank a veteran, then ride like a professional.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- =============== DECEMBER =============== -->
+      <div class="month">
+        <div class="month-head"><span class="m-label">December</span></div>
+        <div class="month-body">
+          <ul class="list">
+            <!-- General Meeting -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">📅 BoneShakers General Meeting</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                <p class="meta"><strong>Duration:</strong> 45 min<br>
+                <strong>Public:</strong> Open to All<br>
+                <strong>When:</strong> First Tuesday of every month<br>
+                <strong>Where:</strong> AJ Gators Sports Bar &amp; Grill – 1993 Sandbridge Rd, Virginia Beach, VA 23456<br>
+
+                <strong>Time:</strong> 6:30 PM</p>
+                <p class="headline">🔥 BoneShakers General Meeting 🔥</p>
+              </div>
+            </li>
+
+            <!-- Virginia Beach Christmas Parade (Support) -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">🎄 Virginia Beach Christmas Parade (Support)</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                Lights, tinsel, and loud cheer—our biggest holiday crowd pleaser. We coordinate staging, spacing, and smiles to keep the line moving safely. Families love the bikes; we love the energy. End-of-year service with a festive roar.
+              </div>
+            </li>
+
+            <!-- Bikes for Tykes — Build -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">🚲 Bikes for Tykes — Build</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                Each year, our members and volunteers come together for the Bikes for Tykes Build, where teamwork and community spirit shine brightest. Side by side, we assemble brand-new bicycles—each one destined to bring joy to a child in need. Wrenches turn, tires snap into place, and every finished bike becomes more than just two wheels: it becomes a symbol of hope, freedom, and a brighter tomorrow. The Build is about more than mechanics—it’s about the bonds we create while working together to make a difference.
+              </div>
+            </li>
+
+            <!-- Bikes for Tykes — Giveaway -->
+            <li>
+              <button class="item-btn" aria-expanded="false">
+                <span class="dot"></span><span class="label">🎁 Bikes for Tykes — Giveaway</span><span class="chev" aria-hidden="true"></span>
+              </button>
+              <div class="desc" hidden>
+                The Giveaway is the heart of our mission. After the hard work of building, we gather as a community to place these bikes into the hands of excited children and their families. Watching a child’s face light up as they receive their very first bicycle is a reminder of why we ride, why we give, and why this tradition matters. Each bike represents opportunity, confidence, and a little more happiness in our neighborhoods. The Giveaway isn’t just the end of the project—it’s the beginning of new adventures for kids across our community.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <script>
+    // Accessible toggle for every event "button"
+    document.querySelectorAll('.item-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const desc = btn.parentElement.querySelector('.desc');
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if (desc) {
+          desc.hidden = expanded;            // keep hidden attr in sync for a11y
+          desc.classList.toggle('show', !expanded);
+        }
+      });
+      // Keyboard support for Enter/Space is native to <button>
+    });
+  </script>
+<script>
+(function(){
+ function sync(){var h=document.querySelector('.bsscGlobalHeader');if(h){document.body.classList.add('bssc-fixed-header');document.documentElement.style.setProperty('--bssc-header-h',h.offsetHeight+'px');}}
+ sync();window.addEventListener('load',sync);window.addEventListener('resize',sync);
+ var mb=document.getElementById('bsscMobileNavButton'),nav=document.getElementById('bsscMainNav');
+ if(mb&&nav){mb.addEventListener('click',function(){var o=nav.classList.toggle('mobileOpen');mb.setAttribute('aria-expanded',o?'true':'false');setTimeout(sync,0);});}
+ document.querySelectorAll('.bsscNavButton').forEach(function(btn){btn.addEventListener('click',function(e){e.stopPropagation();var item=btn.closest('.bsscNavItem');document.querySelectorAll('.bsscNavItem.open').forEach(function(x){if(x!==item)x.classList.remove('open');});item.classList.toggle('open');});});
+ document.addEventListener('click',function(){document.querySelectorAll('.bsscNavItem.open').forEach(function(x){x.classList.remove('open');});});
+})();
+</script>
+</body>
+</html>
