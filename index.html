@@ -75,11 +75,116 @@ footer{padding:18px 0 26px;color:rgba(255,255,255,.75);text-align:center;font-si
   .heroMedia{min-height:200px;height:260px}.heroImg{min-height:200px}.title{font-size:12.5pt}.lead{font-size:11pt}
   footer{font-size:10pt}.meeting-shell{padding:45px 18px}.meeting-title{font-size:27px}.meeting-card{padding:18px 22px}
 }
+
+/* GLOBAL NAVIGATION */
+.globalHeader{background:#000;color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}
+.brandTag{max-width:var(--maxw);margin:0 auto;text-align:center;padding:12px 20px 16px}
+.brandTag .brandName{font-size:27px;line-height:1.15;margin:0 0 5px}
+.brandTag .brandLine{font-size:25px;line-height:1.25;margin:0}
+.brandTag .brandLine + .brandLine{margin-top:2px}
+.mainNavWrap{border-top:1px solid rgba(255,255,255,.04)}
+.mainNav{max-width:var(--maxw);margin:0 auto;display:flex;justify-content:center;align-items:center;gap:6px;padding:0 18px}
+.navItem{position:relative}
+.navLink,.navButton{display:flex;align-items:center;gap:7px;padding:17px 16px;color:#fff;background:transparent;border:0;font:inherit;font-size:11.5pt;letter-spacing:1.8px;text-transform:uppercase;cursor:pointer;white-space:nowrap}
+.navLink:hover,.navButton:hover,.navLink.active{color:#cfcfcf}
+.chev{font-size:12px;line-height:1;transition:transform .2s ease}
+.navItem.open .chev{transform:rotate(180deg)}
+.dropdown{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);min-width:230px;background:#0b0b0d;border:1px solid rgba(255,255,255,.14);box-shadow:0 16px 40px rgba(0,0,0,.65);z-index:200;padding:8px}
+.navItem.open .dropdown{display:block}
+.dropdown a{display:block;padding:11px 12px;border-radius:6px;color:#fff;font-size:10.8pt;letter-spacing:.2px}
+.dropdown a:hover{background:rgba(255,255,255,.07)}
+.mobileNavButton{display:none;width:calc(100% - 36px);margin:10px 18px 14px;padding:12px 14px;background:#111;color:#fff;border:1px solid rgba(255,255,255,.18);border-radius:10px;font-weight:700;text-align:left}
+
+@media(max-width:980px){
+  .brandTag .brandName{font-size:23px}
+  .brandTag .brandLine{font-size:21px}
+  .mobileNavButton{display:block}
+  .mainNav{display:none;flex-direction:column;align-items:stretch;padding:0 18px 16px}
+  .mainNav.mobileOpen{display:flex}
+  .navItem{width:100%}
+  .navLink,.navButton{width:100%;justify-content:space-between;padding:13px 8px;border-bottom:1px solid rgba(255,255,255,.08)}
+  .dropdown{position:static;transform:none;min-width:0;border:0;border-left:2px solid var(--red);box-shadow:none;background:#09090b;margin:0 0 6px 8px;padding:4px 8px}
+}
+
 </style>
 </head>
 <body>
 
-<div class="meeting-shell">
+<header class="globalHeader">
+  <div class="brandTag">
+    <p class="brandName">Boneshakers</p>
+    <p class="brandLine">We ride for fun</p>
+    <p class="brandLine">We serve with purpose</p>
+    <p class="brandLine">We show up for each other</p>
+  </div>
+
+  <button class="mobileNavButton" id="mobileNavButton" type="button" aria-expanded="false">☰ Menu</button>
+
+  <div class="mainNavWrap">
+    <nav class="mainNav" id="mainNav" aria-label="Main navigation">
+      <div class="navItem"><a class="navLink active" href="index.html">Home</a></div>
+
+      <div class="navItem">
+        <button class="navButton" type="button">About <span class="chev">⌄</span></button>
+        <div class="dropdown">
+          <a href="about.html">Our Story &amp; Mission</a>
+          <a href="https://boneshakerssocialclub.com/board-of-directors">Board of Directors</a>
+          <a href="https://boneshakerssocialclub.com/club-support-roles">Club Support Roles</a>
+          <a href="https://boneshakerssocialclub.com/gallery">Gallery &amp; Honor Wall</a>
+        </div>
+      </div>
+
+      <div class="navItem">
+        <button class="navButton" type="button">Rides &amp; Events <span class="chev">⌄</span></button>
+        <div class="dropdown">
+          <a href="events.html">Event Calendar</a>
+          <a href="#meeting-details">General Meeting</a>
+        </div>
+      </div>
+
+      <div class="navItem">
+        <button class="navButton" type="button">Programs <span class="chev">⌄</span></button>
+        <div class="dropdown">
+          <a href="bikes-for-tykes.html">Bikes for Tykes</a>
+          <a href="impact.html">Community Impacts</a>
+        </div>
+      </div>
+
+      <div class="navItem">
+        <button class="navButton" type="button">Get Involved <span class="chev">⌄</span></button>
+        <div class="dropdown">
+          <a href="join.html">Join the BoneShakers</a>
+          <a href="contact.html">General Contact</a>
+        </div>
+      </div>
+
+      <div class="navItem">
+        <button class="navButton" type="button">Giving &amp; Support <span class="chev">⌄</span></button>
+        <div class="dropdown">
+          <a href="sponsors.html">Sponsor</a>
+          <a href="https://boneshakerssocialclub.com/donate">Donate</a>
+        </div>
+      </div>
+
+      <div class="navItem">
+        <button class="navButton" type="button">Shop <span class="chev">⌄</span></button>
+        <div class="dropdown">
+          <a href="marketplace.html">Marketplace</a>
+        </div>
+      </div>
+
+      <div class="navItem">
+        <button class="navButton" type="button">More <span class="chev">⌄</span></button>
+        <div class="dropdown">
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+
+<div class="meeting-shell" id="meeting-details">
   <div class="meeting-logo">
     <img src="https://img1.wsimg.com/isteam/ip/a61a7501-5b4e-4a14-8b09-6b6b40dc23cf/Big%20Lick%202.0%20No%20Background-7996f12.png" alt="BoneShakers Social Club Logo">
   </div>
@@ -185,6 +290,35 @@ footer{padding:18px 0 26px;color:rgba(255,255,255,.75);text-align:center;font-si
 
 <footer>© 2005–<span id="yr"></span> BoneShakers Social Club • Virginia Beach, VA</footer>
 
-<script>(function(){var y=document.getElementById('yr');if(y){y.textContent=new Date().getFullYear();}})();</script>
+<script>
+(function(){
+  var y=document.getElementById('yr');
+  if(y){y.textContent=new Date().getFullYear();}
+
+  var mobileBtn=document.getElementById('mobileNavButton');
+  var mainNav=document.getElementById('mainNav');
+  if(mobileBtn && mainNav){
+    mobileBtn.addEventListener('click',function(){
+      var open=mainNav.classList.toggle('mobileOpen');
+      mobileBtn.setAttribute('aria-expanded',open ? 'true':'false');
+    });
+  }
+
+  document.querySelectorAll('.navButton').forEach(function(btn){
+    btn.addEventListener('click',function(e){
+      e.stopPropagation();
+      var item=btn.closest('.navItem');
+      document.querySelectorAll('.navItem.open').forEach(function(other){
+        if(other!==item){other.classList.remove('open');}
+      });
+      item.classList.toggle('open');
+    });
+  });
+
+  document.addEventListener('click',function(){
+    document.querySelectorAll('.navItem.open').forEach(function(item){item.classList.remove('open');});
+  });
+})();
+</script>
 </body>
 </html>
