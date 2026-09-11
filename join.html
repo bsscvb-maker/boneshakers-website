@@ -67,6 +67,1385 @@
   </section>
   <div class="section-divider"></div>
   <section class="real-value"><h2>🔒 The Real Value</h2><ul><li>A <strong>second family</strong> that stands with you in good times and bad.</li><li><strong>Respect and recognition</strong> as part of a riding organization with over 20 years of tradition.</li><li>The <strong>pride</strong> of being more than a rider — being a BoneShaker.</li></ul></section>
+  <div class="section-divider"></div>
+  <section aria-label="Membership application">
+    <h2>Ready to Start Your Application?</h2>
+    <p class="section-lead">If you have received the membership password from the Club President, continue below to complete the official application.</p>
+<style>
+/* =========================
+   GLOBAL THEME
+   ========================= */
+:root{
+  --bg:#050507;
+  --bg-grad:radial-gradient(circle at top, #222 0, #050507 55%);
+  --card:#0b0b0d;
+  --text:#ffffff;
+  --muted:#cfcfcf;
+  --primary:#C1352E;
+  --primary-soft:rgba(193,53,46,.35);
+  --wrap:min(960px,100% - 28px);
+  --radius-lg:18px;
+  --shadow-main:0 22px 45px rgba(0,0,0,.9);
+
+  --ring:#2b2b2b;
+  --ok:#355e3b;
+  --warn:#6b4a1b;
+  --shadow:0 14px 40px rgba(0,0,0,.65);
+  --radius:16px;
+  --wrap3:min(980px,100% - 28px);
+}
+
+*{box-sizing:border-box}
+
+html,body{
+  margin:0;
+  padding:0;
+  background:var(--bg-grad);
+  color:var(--text);
+  font-family:Verdana,Arial,sans-serif;
+  /* GoDaddy places Custom HTML in an iframe. Let its height be measured from
+     the content instead of making the iframe document its own scroll area. */
+  height:auto !important;
+  min-height:0 !important;
+  overflow-x:hidden !important;
+  overflow-y:visible !important;
+}
+
+.wrap{
+  width:var(--wrap);
+  margin:24px auto 40px;
+}
+
+/* HEADER */
+.page-header{ text-align:center; margin-bottom:18px; }
+h1{
+  font-size:clamp(1.6rem,1.3rem + 1.4vw,2.2rem);
+  margin:.6rem 0 .35rem;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+}
+h1 span{ color:var(--primary); }
+
+/* FORM SHELL */
+.form-shell{
+  border-radius:var(--radius-lg);
+  background:var(--card);
+  border:1px solid rgba(255,255,255,.07);
+  box-shadow:var(--shadow-main);
+  overflow:hidden;
+}
+
+/* GOOGLE FORM */
+.form-wrap{
+  background:#000;
+  padding:24px;
+}
+.form-wrap iframe{
+  width:100%;
+  max-width:640px;
+  height:900px;
+  display:block;
+  margin:0 auto;
+  border:none;
+}
+
+/* STEP 3 */
+.step3-wrap{
+  width:var(--wrap3);
+  margin:0 auto;
+  padding:18px 0 70px;
+}
+
+.banner{
+  background:linear-gradient(180deg, rgba(193,53,46,.18), rgba(193,53,46,0));
+  border:1px solid rgba(193,53,46,.35);
+  border-radius:var(--radius);
+  padding:18px 16px;
+  box-shadow:var(--shadow);
+}
+
+.card{
+  background:rgba(16,16,21,.92);
+  border:1px solid var(--ring);
+  border-radius:var(--radius);
+  padding:16px;
+  margin-top:14px;
+  box-shadow:var(--shadow);
+}
+
+/* Code of Conduct scroll box (KEY FIX for GoDaddy reliability) */
+.coc-scroll{
+  max-height:360px;
+  overflow:auto;
+  padding:14px 14px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:12px;
+  background:rgba(0,0,0,.22);
+}
+.coc-scroll h2{
+  margin:0 0 6px;
+  font-size:18px;
+}
+.coc-scroll .rev{
+  margin:0 0 12px;
+  color:#bbb;
+  font-size:12px;
+}
+.coc-scroll p{ margin:10px 0; color:#eee; }
+.coc-scroll ul{ margin:8px 0 14px 20px; padding:0; }
+.coc-scroll li{ margin:6px 0; color:#eee; }
+hr.sep{border:0;border-top:1px solid #2b2b2b;margin:14px 0;}
+
+/* Status pills */
+.statusbar{
+  margin-top:10px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.pill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  border-radius:999px;
+  padding:6px 10px;
+  border:1px solid #3a3a3a;
+  color:#ddd;
+  font-size:12px;
+  background:rgba(0,0,0,.28);
+}
+.pill .mini-dot{width:8px;height:8px;border-radius:50%;background:#777;}
+.pill.ok{border-color:rgba(53,94,59,.9); color:#d3f8d3;}
+.pill.ok .mini-dot{background:#4aa35a;}
+.pill.warn{border-color:rgba(107,74,27,.95); color:#ffe8c9;}
+.pill.warn .mini-dot{background:#d09b3d;}
+
+/* Signature */
+.sig-grid{
+  display:grid;
+  grid-template-columns:3fr 2fr;
+  gap:12px;
+  margin-top:12px;
+}
+@media(max-width:720px){
+  .sig-grid{ grid-template-columns:1fr; }
+}
+
+.field label{
+  display:block;
+  margin:0 0 6px;
+  font-size:13px;
+  font-weight:700;
+  color:#eee;
+}
+
+input[type="text"], input[type="date"]{
+  width:100%;
+  background:#0b0b10;
+  border:1px solid #333;
+  border-radius:12px;
+  color:#fff;
+  padding:12px;
+  outline:none;
+}
+input[type="text"]:focus, input[type="date"]:focus{
+  border-color:rgba(193,53,46,.9);
+  box-shadow:0 0 0 3px rgba(193,53,46,.22);
+}
+
+.actions{
+  margin-top:14px;
+  display:flex;
+  gap:10px;
+  justify-content:flex-end;
+  flex-wrap:wrap;
+}
+
+/* BUTTON BASE */
+.btn{
+  border-radius:12px;
+  padding:12px 14px;
+  font-weight:800;
+  cursor:pointer;
+  border:0;
+}
+
+/* YOUR UPDATED BUTTON STYLES (Glow when ready) */
+.btn.primary{
+  background:var(--primary);
+  color:#fff;
+  transition:all .25s ease;
+}
+
+/* Locked state */
+.btn.primary:disabled{
+  opacity:.35;
+  cursor:not-allowed;
+  box-shadow:none;
+}
+
+/* READY / UNLOCKED STATE */
+.btn.primary.ready{
+  opacity:1;
+  cursor:pointer;
+  box-shadow:
+    0 0 0 2px rgba(193,53,46,.4),
+    0 0 14px rgba(193,53,46,.6),
+    0 0 28px rgba(193,53,46,.35);
+  animation:bsscGlow 1.8s ease-in-out infinite;
+}
+
+/* Glow animation */
+@keyframes bsscGlow{
+  0%,100%{
+    box-shadow:
+      0 0 0 2px rgba(193,53,46,.4),
+      0 0 14px rgba(193,53,46,.6),
+      0 0 28px rgba(193,53,46,.35);
+  }
+  50%{
+    box-shadow:
+      0 0 0 3px rgba(193,53,46,.7),
+      0 0 22px rgba(193,53,46,.9),
+      0 0 42px rgba(193,53,46,.5);
+  }
+}
+
+/* CONFIRM */
+.confirm{
+  display:none;
+  text-align:center;
+  padding:30px;
+  border:2px solid var(--primary);
+  border-radius:18px;
+  margin-top:14px;
+}
+
+.small{font-size:12px;color:#bdbdbd;}
+
+/* MEMBERSHIP DUES ACKNOWLEDGMENT */
+.dues-card{
+  background:linear-gradient(180deg, rgba(193,53,46,.16), rgba(16,16,21,.96));
+  border:2px solid rgba(193,53,46,.65);
+  border-radius:var(--radius);
+  padding:18px;
+  margin-top:14px;
+  box-shadow:var(--shadow);
+}
+
+.dues-card h2{
+  margin:0 0 10px;
+  color:#fff;
+}
+
+.dues-card strong{
+  color:#fff;
+}
+
+.compact-dues{
+  padding:16px;
+}
+
+.compact-dues h2{
+  margin-bottom:6px;
+}
+
+.dues-summary{
+  margin:4px 0 12px;
+  font-size:16px;
+}
+
+.dues-lines p{
+  margin:10px 0;
+  line-height:1.45;
+}
+
+/* Payment method choice */
+.payment-choice{
+  margin-top:16px;
+  padding:14px;
+  border-radius:14px;
+  background:rgba(0,0,0,.28);
+  border:1px solid rgba(255,255,255,.12);
+}
+
+.payment-choice h3{
+  margin:0 0 5px;
+  font-size:17px;
+  color:#fff;
+}
+
+.payment-choice .choice-help{
+  margin:0 0 12px;
+  color:#cfcfcf;
+  font-size:13px;
+}
+
+.payment-options{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+@media(max-width:720px){
+  .payment-options{grid-template-columns:1fr;}
+}
+
+.payment-option{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-height:54px;
+  padding:12px 14px;
+  border:1px solid #3a3a3a;
+  border-radius:12px;
+  background:#0b0b10;
+  cursor:pointer;
+  font-weight:800;
+  color:#fff;
+  transition:border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.payment-option:hover{
+  border-color:rgba(193,53,46,.8);
+}
+
+.payment-option:has(input:checked){
+  border-color:var(--primary);
+  background:rgba(193,53,46,.12);
+  box-shadow:0 0 0 2px rgba(193,53,46,.18);
+}
+
+.payment-option input{
+  margin:0;
+  transform:scale(1.2);
+  accent-color:var(--primary);
+}
+
+/* Conditional payment panels */
+.payment-panel{
+  display:none;
+  margin-top:14px;
+  padding:16px;
+  border-radius:14px;
+  background:rgba(0,0,0,.34);
+  border:1px solid rgba(193,53,46,.45);
+  text-align:center;
+}
+
+.payment-panel.show{
+  display:block;
+}
+
+/* Center and visually balance the online payment area */
+.online-pay-box{
+  width:100%;
+  max-width:700px;
+  margin:14px auto 0;
+  padding:18px 16px;
+  text-align:center;
+}
+
+.online-pay-box .pay-title{
+  margin:0 0 14px;
+  font-size:22px;
+  line-height:1.1;
+  font-weight:900;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:#fff;
+  text-align:center;
+}
+
+/* Center the PayPal hosted button block and its generated content */
+#paypal-container-F757C85GQPJ8A{
+  width:100%;
+  max-width:520px;
+  margin:0 auto !important;
+  padding:0;
+  text-align:center;
+}
+
+#paypal-container-F757C85GQPJ8A > div{
+  width:100% !important;
+  max-width:520px !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+
+#paypal-container-F757C85GQPJ8A iframe{
+  display:block !important;
+  width:100% !important;
+  max-width:520px !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+
+.in-person-box h3{
+  margin:0 0 8px;
+  color:#fff;
+  font-size:20px;
+}
+
+.in-person-box p{
+  margin:5px 0;
+  color:#ddd;
+}
+
+.in-person-box .no-fee{
+  margin-top:10px;
+  color:#d3f8d3;
+  font-size:13px;
+  font-weight:700;
+}
+
+.dues-ack{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  margin-top:14px;
+  padding:12px;
+  border-radius:12px;
+  background:rgba(0,0,0,.28);
+  border:1px solid rgba(255,255,255,.12);
+}
+
+.dues-ack input{
+  margin-top:3px;
+  transform:scale(1.2);
+  accent-color:var(--primary);
+}
+
+.dues-ack label{
+  cursor:pointer;
+  line-height:1.45;
+  color:#eee;
+  font-size:13px;
+}
+
+.final-submit-card{
+  border-color:rgba(193,53,46,.45);
+}
+
+/* =========================================================
+   STRICT CENTERING FIX FOR PAYPAL HOSTED BUTTON CONTENT
+   ========================================================= */
+#online_payment_panel{
+  width:100% !important;
+  max-width:700px !important;
+  margin:14px auto 0 !important;
+  padding:18px 16px !important;
+  text-align:center !important;
+}
+
+#online_payment_panel *{
+  box-sizing:border-box;
+}
+
+#online_payment_panel .pay-title{
+  width:100% !important;
+  max-width:none !important;
+  margin:0 auto 16px !important;
+  text-align:center !important;
+}
+
+#paypal-container-F757C85GQPJ8A{
+  width:100% !important;
+  max-width:520px !important;
+  margin:0 auto !important;
+  padding:0 !important;
+  text-align:center !important;
+  display:block !important;
+}
+
+#paypal-container-F757C85GQPJ8A > *{
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+
+#paypal-container-F757C85GQPJ8A > div{
+  width:100% !important;
+  max-width:520px !important;
+  margin:0 auto !important;
+  padding:0 !important;
+  text-align:center !important;
+  display:block !important;
+}
+
+/* PayPal may inject additional nested wrappers */
+#paypal-container-F757C85GQPJ8A div,
+#paypal-container-F757C85GQPJ8A section{
+  margin-left:auto !important;
+  margin-right:auto !important;
+  text-align:center !important;
+}
+
+/* Force all textual blocks inside PayPal-rendered HTML to share one center axis */
+#paypal-container-F757C85GQPJ8A h1,
+#paypal-container-F757C85GQPJ8A h2,
+#paypal-container-F757C85GQPJ8A h3,
+#paypal-container-F757C85GQPJ8A h4,
+#paypal-container-F757C85GQPJ8A p,
+#paypal-container-F757C85GQPJ8A span{
+  text-align:center !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+
+/* Center generated images/logos */
+#paypal-container-F757C85GQPJ8A img{
+  display:block !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+
+/* Center embedded PayPal frames */
+#paypal-container-F757C85GQPJ8A iframe{
+  display:block !important;
+  width:100% !important;
+  max-width:520px !important;
+  margin:0 auto !important;
+  border:0 !important;
+}
+
+
+/* REQUIRED PROSPECT STATUS ACKNOWLEDGMENT */
+.prospect-ack-card{
+  background:linear-gradient(180deg, rgba(193,53,46,.18), rgba(16,16,21,.96));
+  border:2px solid rgba(193,53,46,.7);
+  border-radius:var(--radius);
+  padding:16px;
+  margin-top:14px;
+  box-shadow:var(--shadow);
+}
+
+.prospect-ack-card h2{
+  margin:0 0 8px;
+  font-size:18px;
+}
+
+.prospect-ack-card p{
+  margin:7px 0;
+  font-size:13px;
+  line-height:1.45;
+  color:#eee;
+}
+
+.prospect-check{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  margin-top:12px;
+  padding:11px;
+  border-radius:12px;
+  background:rgba(0,0,0,.28);
+  border:1px solid rgba(255,255,255,.12);
+}
+
+.prospect-check input{
+  margin-top:3px;
+  transform:scale(1.2);
+  accent-color:var(--primary);
+}
+
+.prospect-check label{
+  font-size:12.5px;
+  line-height:1.4;
+  color:#eee;
+}
+
+.prospect-signature{
+  margin-top:12px;
+}
+
+/* MEMBERSHIP PASSWORD GATE */
+.membership-password-gate{
+  width:var(--wrap);
+  margin:24px auto 40px;
+  padding:24px 18px;
+  border:1px solid rgba(193,53,46,.45);
+  border-radius:var(--radius-lg);
+  background:linear-gradient(180deg, rgba(193,53,46,.18), rgba(11,11,13,.98));
+  box-shadow:var(--shadow-main);
+  text-align:center;
+}
+.membership-password-gate h2{ margin:0 0 10px; }
+.membership-password-gate p{ margin:0 auto 16px; max-width:620px; color:#ddd; line-height:1.5; }
+.password-gate-form{ max-width:420px; margin:0 auto; }
+.password-gate-form label{ display:block; margin:0 0 7px; font-size:13px; font-weight:700; text-align:left; }
+.password-input-wrap{ position:relative; }
+.password-gate-form input{
+  width:100%;
+  padding:12px;
+  padding-right:52px;
+  color:#fff;
+  background:#0b0b10;
+  border:1px solid #444;
+  border-radius:12px;
+  outline:none;
+}
+.password-gate-form input:focus{ border-color:rgba(193,53,46,.9); box-shadow:0 0 0 3px rgba(193,53,46,.22); }
+.password-toggle{
+  position:absolute;
+  top:50%;
+  right:8px;
+  transform:translateY(-50%);
+  width:36px;
+  height:36px;
+  padding:0;
+  border:0;
+  border-radius:9px;
+  background:transparent;
+  color:#ddd;
+  font-size:20px;
+  line-height:1;
+  cursor:pointer;
+}
+.password-toggle:hover{ background:rgba(193,53,46,.2); color:#fff; }
+.password-gate-form > button{ width:100%; margin-top:10px; }
+.password-gate-error{ min-height:20px; margin:10px 0 0; color:#ffb8b4 !important; font-size:13px; font-weight:700; }
+#membership-content{ display:none; }
+
+</style>
+
+<section class="membership-password-gate" id="membership_password_gate">
+  <div style="display:inline-block;background:rgba(193,53,46,.18);border:1px solid rgba(193,53,46,.5);padding:4px 10px;border-radius:999px;font-size:11px;letter-spacing:.08em;margin-bottom:10px;">
+    BONESHAKERS SOCIAL CLUB
+  </div>
+  <h2>Membership Application Access</h2>
+  <p>Please enter the membership password to complete your membership application. If you do not have one, please receive it from the President of the Club.</p>
+  <form class="password-gate-form" id="membership_password_form">
+    <label for="membership_password">Membership Password</label>
+    <div class="password-input-wrap">
+      <input type="password" id="membership_password" autocomplete="off" required>
+      <button class="password-toggle" type="button" id="membership_password_toggle" aria-label="Show password" title="Show password">👁</button>
+    </div>
+    <button class="btn primary" type="submit">Continue to Application</button>
+    <p class="password-gate-error" id="membership_password_error" aria-live="polite"></p>
+  </form>
+</section>
+
+<div id="membership-content">
+<main class="wrap">
+
+<!-- =========================
+     PATH HEADER (RESTORED)
+     ========================= -->
+<section style="
+  margin-bottom:18px;
+  padding:22px 18px;
+  border-radius:16px;
+  background:
+    radial-gradient(circle at top,
+      rgba(193,53,46,.28),
+      rgba(193,53,46,.08) 40%,
+      rgba(0,0,0,.6) 100%);
+  border:1px solid rgba(193,53,46,.35);
+  box-shadow:0 18px 40px rgba(0,0,0,.7);
+  text-align:center;
+">
+
+  <div style="
+    display:inline-block;
+    background:rgba(193,53,46,.18);
+    border:1px solid rgba(193,53,46,.5);
+    padding:4px 10px;
+    border-radius:999px;
+    font-size:11px;
+    letter-spacing:.08em;
+    margin-bottom:8px;
+  ">
+    BONESHAKERS SOCIAL CLUB
+  </div>
+
+  <h1 style="
+    margin:4px 0 6px;
+    font-size:clamp(1.6rem,1.3rem + 1.4vw,2.2rem);
+    letter-spacing:.05em;
+    text-transform:uppercase;
+  ">
+<span style="color:#C1352E;font-weight:900;letter-spacing:.06em;">PATH</span> TO MEMBERSHIP
+
+  </h1>
+
+  <p style="
+    margin:0 0 12px;
+    color:#d0d0d0;
+    font-size:14px;
+  ">
+      Complete Phases 1–5 of the official BoneShakers Social Club membership application. Final acceptance is determined by Board review.
+
+  </p>
+
+  <div style="
+    margin-top:12px;
+    padding:12px;
+    border-radius:12px;
+    background:linear-gradient(90deg,
+      rgba(193,53,46,.28),
+      rgba(193,53,46,.12));
+    border:1px solid rgba(193,53,46,.45);
+  ">
+
+    <div style="
+      font-weight:700;
+      margin-bottom:6px;
+    ">
+      Membership Application — Phases 1–5
+    </div>
+
+    <div style="
+      font-size:13px;
+      color:#ddd;
+      margin-bottom:8px;
+    ">
+      Provide complete and accurate information in all sections below. This information will be reviewed as part of the official membership evaluation process.
+
+    </div>
+
+    <div style="
+      display:flex;
+      gap:8px;
+      justify-content:center;
+      flex-wrap:wrap;
+    ">
+
+      <span style="padding:6px 10px;border-radius:999px;border:1px solid #C1352E;background:rgba(193,53,46,.25);font-size:12px;">1 Application</span>
+
+      <span style="padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.25);font-size:12px;">2 Code of Conduct</span>
+
+      <span style="padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.25);font-size:12px;">3 Signature</span>
+
+      <span style="padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.25);font-size:12px;">4 Membership Dues</span>
+
+      <span style="padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.25);font-size:12px;">5 Submit</span>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="form-shell">
+  <div class="form-embed-container">
+
+    <iframe
+  src="https://docs.google.com/forms/d/e/1FAIpQLScWl2SFnPrE61pvDpXozGF4gu7ccNuCUQpVUJ5F3hrRs5o4GQ/viewform?embedded=true"
+      class="form-embed-frame"
+      loading="lazy"
+      frameborder="0"
+      marginheight="0"
+      marginwidth="0">
+    </iframe>
+
+  </div>
+
+</section>
+
+<style>
+
+.form-embed-container {
+  max-width: 900px;
+  margin: 40px auto;
+  border-radius: 18px;
+  overflow: hidden;
+
+  background:
+    radial-gradient(circle at top,
+      rgba(193,53,46,.18),
+      rgba(0,0,0,.95) 65%);
+
+  border: 1px solid rgba(193,53,46,.35);
+
+  box-shadow:
+    0 0 20px rgba(193,53,46,.25),
+    0 0 60px rgba(0,0,0,.9);
+
+  height: 565px;     /* controls visible window */
+  position: relative;
+}
+
+.form-embed-frame {
+  width: 100%;
+  height: 550px;     /* taller than container */
+  border: none;
+  display: block;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+
+
+
+
+</style>
+
+
+  <div class="step3-wrap">
+
+    <div class="banner">
+      <h2>Step 2 — Code of Conduct</h2>
+      <p>Scroll to the bottom of the Code of Conduct to continue to your acknowledgment and signature.</p>
+
+      <div class="statusbar" aria-live="polite">
+        <span class="pill warn" id="pill_read"><span class="mini-dot"></span> Read to bottom: not yet</span>
+        <span class="pill warn" id="pill_sig"><span class="mini-dot"></span> Signature: required</span>
+        <span class="pill warn" id="pill_ready"><span class="mini-dot"></span> Submit: locked</span>
+      </div>
+    </div>
+
+    <!-- ✅ RESTORED CODE OF CONDUCT (FULL TEXT) -->
+    <div class="card" id="coc_card">
+      <div class="coc-scroll" id="coc_scroll" aria-label="Code of Conduct Scroll Area">
+
+        <h2>BoneShakers Social Club — Club Code of Conduct</h2>
+        <p class="rev">Revision Version 2.0</p>
+
+        <p>
+          To maintain our motorcycle social club's integrity, respect, and smooth operation,
+          we expect all members to adhere to the following rules of conduct.
+        </p>
+
+        <hr class="sep" />
+
+        <p><strong>1. Respect and Brotherhood/Sisterhood</strong></p>
+        <ul>
+          <li>Treat all members and associates respectfully and courteously, regardless of rank or status.</li>
+          <li>Uphold the values of loyalty, camaraderie, and trust within the club.</li>
+          <li>Resolve conflicts amicably and privately, seeking guidance from leadership if needed.</li>
+        </ul>
+
+        <p><strong>2. Commitment and Participation</strong></p>
+        <ul>
+          <li>Strive to attend all scheduled meetings, rides, and events whenever possible.</li>
+          <li>Actively participate in club activities and support initiatives that benefit the group or the community.</li>
+          <li>Represent the club proudly, wearing club colors/patches during official events.</li>
+        </ul>
+
+        <p><strong>3. Lawful and Safe Riding</strong></p>
+        <ul>
+          <li>Always follow all traffic laws and ride safely to protect yourself and others.</li>
+          <li>Adhere to the club's riding formation and safety protocols during group rides.</li>
+          <li>Avoid reckless or irresponsible riding that could endanger members or the public.</li>
+          <li>Remain quiet and attentive during all pre-ride debriefings; these sessions are essential for safety.</li>
+        </ul>
+
+        <p><strong>4. Confidentiality</strong></p>
+        <ul>
+          <li>Keep club business and sensitive matters private; never discuss internal affairs with non-members.</li>
+          <li>Protect the club's reputation by refraining from gossip, slander, or defamation.</li>
+        </ul>
+
+        <p><strong>5. Substance Use</strong></p>
+        <ul>
+          <li>Do not consume alcohol or drugs in a manner that impairs your judgment during rides or club activities.</li>
+          <li>Illegal drug use or possession is strictly prohibited and is grounds for expulsion.</li>
+        </ul>
+
+        <p><strong>6. No Violence or Criminal Activity</strong></p>
+        <ul>
+          <li>Avoid engaging in violence, intimidation, or illegal activities, which can harm the club's reputation.</li>
+          <li>Any violation of this rule will be addressed swiftly and may result in immediate removal from the club.</li>
+        </ul>
+
+        <p><strong>7. Chain of Command</strong></p>
+        <ul>
+          <li>Respect the club's leadership and follow their directives in accordance with the club's bylaws.</li>
+          <li>Bring grievances or suggestions to the President through the proper channels.</li>
+        </ul>
+
+        <p><strong>8. Support for Members</strong></p>
+        <ul>
+          <li>Assist fellow members in times of need, whether on or off the road.</li>
+          <li>Foster a supportive and inclusive environment for all members.</li>
+        </ul>
+
+        <p><strong>9. Club Property and Colors</strong></p>
+        <ul>
+          <li>Treat all club property with the utmost respect, including patches, flags, and banners.</li>
+          <li>Return all club-owned property if leaving or being removed from the club.</li>
+        </ul>
+
+        <p><strong>10. Representation</strong></p>
+        <ul>
+          <li>Represent the club positively in public and online.</li>
+          <li>Avoid engaging in social media disputes or posting content that could harm the club's image.</li>
+        </ul>
+
+        <p><strong>Violations</strong><br>
+          Failure to comply with these rules may result in disciplinary action, which could include suspension or
+          termination of membership based on the severity of the violation. The Club President will oversee all
+          disciplinary matters per the club's bylaws and with the approval of the Board of Directors.
+        </p>
+
+        <p class="small" style="margin-top:10px;">
+          You must reach the bottom of this Code of Conduct before the signature &amp; submit will unlock.
+        </p>
+
+        <!-- Bottom marker for detection -->
+        <div id="coc_bottom" style="height:1px;"></div>
+
+      </div>
+    </div>
+
+    <!-- SIGNATURE -->
+    <div class="card" id="sig_card">
+      <h2>Step 3 — Acknowledgment & Signature</h2>
+      <p class="small">Type your full legal name to acknowledge that you have read and agree to follow the Code of Conduct.</p>
+
+<div class="sig-grid">
+  <div class="field">
+    <label for="sig_name">Full Name (Typed Signature)</label>
+    <input id="sig_name" type="text" placeholder="Type your full name" autocomplete="name" />
+  </div>
+
+  <div class="field">
+    <label for="sig_email">Email Address</label>
+    <input id="sig_email" type="text" placeholder="Enter your email address" autocomplete="email" />
+  </div>
+
+  <div class="field">
+    <label for="sig_date">Date</label>
+    <input id="sig_date" type="date" />
+  </div>
+</div>
+
+
+      <div class="actions">
+        <button class="btn primary" id="continueBtn" disabled>Continue to Membership Dues</button>
+      </div>
+
+      <p class="small" style="margin-top:10px;">
+        Continue unlocks when you scroll to the bottom of the Code of Conduct and enter your name.
+      </p>
+    </div>
+
+
+    <!-- STEP 4: MEMBERSHIP DUES -->
+    <div class="dues-card compact-dues" id="dues_card">
+      <h2>Step 4 — Membership Dues</h2>
+      <p class="dues-summary"><strong>$100 total — paid in two $50 payments</strong></p>
+
+      <div class="dues-lines">
+        <p>
+          <strong>Payment 1 — $50 Non-Refundable Application Payment</strong><br>
+          Due when you submit your application or no later than the next regular club meeting.
+        </p>
+
+        <p>
+          <strong>Payment 2 — $50 Patch Payment</strong><br>
+          Due when you are officially accepted into the club and receive your club patches.
+        </p>
+      </div>
+
+      <div class="dues-ack">
+        <input type="checkbox" id="dues_ack" />
+        <label for="dues_ack">
+          I understand that new-member dues are <strong>$100 total</strong>, paid in two $50 payments.
+          The first $50 is a <strong>non-refundable application payment</strong> due when I submit
+          my application or at the next regular club meeting. The second $50 is due when I am
+          officially accepted into the club and receive my club patches.
+        </label>
+      </div>
+
+      <div class="payment-choice">
+        <h3>How would you like to make your $50 application payment?</h3>
+        <p class="choice-help">Choose one option below before submitting your application.</p>
+
+        <div class="payment-options">
+          <label class="payment-option" for="payment_online">
+            <input type="radio" name="payment_method" id="payment_online" value="Online" />
+            <span>Pay Online Now</span>
+          </label>
+
+          <label class="payment-option" for="payment_in_person">
+            <input type="radio" name="payment_method" id="payment_in_person" value="In Person" />
+            <span>Pay $50 In Person</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="payment-panel online-pay-box" id="online_payment_panel">
+        <div class="pay-title">Pay Online Now</div>
+        <div id="paypal-container-F757C85GQPJ8A"></div>
+      </div>
+
+      <div class="payment-panel in-person-box" id="in_person_payment_panel">
+        <h3>Pay In Person</h3>
+        <p>Your <strong>$50 non-refundable application payment</strong> is due to the Club Treasurer at the next regular club meeting.</p>
+        <p class="no-fee">No online processing fee applies.</p>
+      </div>
+
+      <div class="statusbar" aria-live="polite">
+        <span class="pill warn" id="pill_dues"><span class="mini-dot"></span> Dues acknowledgment: required</span>
+        <span class="pill warn" id="pill_payment"><span class="mini-dot"></span> Payment method: required</span>
+      </div>
+    </div>
+
+
+
+    <!-- REQUIRED PROSPECT STATUS ACKNOWLEDGMENT -->
+    <div class="prospect-ack-card" id="prospect_ack_card">
+      <h2>Final Acknowledgment — Prospect Status</h2>
+
+      <p>
+        <strong>Submitting this application does not make you a BoneShakers Social Club prospect,
+        member, or guarantee acceptance into the club.</strong>
+      </p>
+
+      <p>
+        Applicants are expected to attend club events, meet members, and become familiar with the club.
+        Prospect status is granted only after review and approval by club leadership.
+        The BoneShakers Social Club reserves the right to approve or decline any application.
+      </p>
+
+      <div class="prospect-check">
+        <input type="checkbox" id="prospect_ack" />
+        <label for="prospect_ack">
+          I understand that submitting this application does not grant me prospect status,
+          membership, or guarantee acceptance into the BoneShakers Social Club.
+        </label>
+      </div>
+
+      <div class="field prospect-signature">
+        <label for="prospect_sig_name">Type Your Full Legal Name to Sign This Acknowledgment</label>
+        <input id="prospect_sig_name" type="text" placeholder="Type your full legal name" autocomplete="name" />
+      </div>
+
+      <div class="statusbar" aria-live="polite">
+        <span class="pill warn" id="pill_prospect_ack"><span class="mini-dot"></span> Prospect acknowledgment: required</span>
+        <span class="pill warn" id="pill_prospect_sig"><span class="mini-dot"></span> Prospect signature: required</span>
+      </div>
+    </div>
+
+    <div class="card final-submit-card" id="final_submit_card">
+      <h2>Complete Your Application</h2>
+      <p class="small">
+        Acknowledge the membership dues and choose how you will make the $50 application payment.
+        Then submit your completed application below.
+      </p>
+
+      <div class="actions">
+        <button class="btn primary" id="submitBtn" disabled>Submit Membership Application</button>
+      </div>
+    </div>
+
+    <div class="confirm" id="thanks">
+      <h2>✓ Signature Complete</h2>
+      <p>Your submission has been recorded.</p>
+    </div>
+
+  </div>
+
+</main>
+
+</div>
+
+<script
+  src="https://www.paypal.com/sdk/js?client-id=BAAR3nc7Rii_IzLxdtExS-SEzZxKgJfJOS8-Kbjs8llYypAZ1VIZKmz13kILPad9DnKPY7sU57P0KehjnM&components=hosted-buttons&enable-funding=venmo&currency=USD">
+</script>
+
+<script>
+  paypal.HostedButtons({
+    hostedButtonId: "F757C85GQPJ8A",
+  }).render("#paypal-container-F757C85GQPJ8A");
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  var passwordForm=document.getElementById("membership_password_form");
+  var passwordInput=document.getElementById("membership_password");
+  var passwordToggle=document.getElementById("membership_password_toggle");
+  var passwordError=document.getElementById("membership_password_error");
+  var passwordGate=document.getElementById("membership_password_gate");
+  var membershipContent=document.getElementById("membership-content");
+
+  if(passwordToggle && passwordInput){
+    passwordToggle.addEventListener("click", function(){
+      var showing=passwordInput.type === "text";
+      passwordInput.type=showing ? "password" : "text";
+      passwordToggle.textContent=showing ? "👁" : "🙈";
+      passwordToggle.setAttribute("aria-label", showing ? "Show password" : "Hide password");
+      passwordToggle.setAttribute("title", showing ? "Show password" : "Hide password");
+    });
+  }
+
+  if(passwordForm){
+    passwordForm.addEventListener("submit", function(event){
+      event.preventDefault();
+      if(passwordInput && passwordInput.value === "biglick"){
+        membershipContent.style.display="block";
+        passwordGate.style.display="none";
+        window.scrollTo({top:0, behavior:"smooth"});
+      } else {
+        passwordError.textContent="That password is not correct. Please try again.";
+        if(passwordInput){
+          passwordInput.value="";
+          passwordInput.focus();
+        }
+      }
+    });
+  }
+});
+
+document.addEventListener("DOMContentLoaded", function(){
+var SCRIPT_URL="https://script.google.com/macros/s/AKfycbxbhUF4cmO6OQmhri2duclSd6_g6GOYvHZYk4Frv7EVyAa0wFJSLpyhjWwNUXcWDl8LKw/exec";
+
+  var cocScroll=document.getElementById("coc_scroll");
+  var sigName=document.getElementById("sig_name");
+  var sigDate=document.getElementById("sig_date");
+  var sigEmail=document.getElementById("sig_email");
+  var continueBtn=document.getElementById("continueBtn");
+  var submitBtn=document.getElementById("submitBtn");
+  var thanks=document.getElementById("thanks");
+  var sigCard=document.getElementById("sig_card");
+  var cocCard=document.getElementById("coc_card");
+
+  var pillRead=document.getElementById("pill_read");
+  var pillSig=document.getElementById("pill_sig");
+  var pillReady=document.getElementById("pill_ready");
+  var duesAck=document.getElementById("dues_ack");
+  var pillDues=document.getElementById("pill_dues");
+  var pillPayment=document.getElementById("pill_payment");
+  var paymentOnline=document.getElementById("payment_online");
+  var paymentInPerson=document.getElementById("payment_in_person");
+  var onlinePaymentPanel=document.getElementById("online_payment_panel");
+  var inPersonPaymentPanel=document.getElementById("in_person_payment_panel");
+  var prospectAck=document.getElementById("prospect_ack");
+  var prospectSigName=document.getElementById("prospect_sig_name");
+  var pillProspectAck=document.getElementById("pill_prospect_ack");
+  var pillProspectSig=document.getElementById("pill_prospect_sig");
+
+  var reachedBottom=false;
+
+  function todayISO(){
+    var d=new Date();
+    var y=d.getFullYear();
+    var m=String(d.getMonth()+1).padStart(2,'0');
+    var day=String(d.getDate()).padStart(2,'0');
+    return y+'-'+m+'-'+day;
+  }
+
+  if(sigDate && !sigDate.value){
+    sigDate.value=todayISO();
+  }
+
+  function signatureValid(){
+    return ((sigName && sigName.value) ? sigName.value : '').trim().length>=2;
+  }
+
+  function setPill(pill, ok, text){
+    if(!pill) return;
+    pill.classList.remove('ok','warn');
+    pill.classList.add(ok ? 'ok' : 'warn');
+    pill.innerHTML = '<span class="mini-dot"></span> ' + text;
+  }
+
+  function selectedPaymentMethod(){
+    if(paymentOnline && paymentOnline.checked) return "Online";
+    if(paymentInPerson && paymentInPerson.checked) return "In Person";
+    return "";
+  }
+
+  function updatePaymentPanels(){
+    var method=selectedPaymentMethod();
+
+    if(onlinePaymentPanel){
+      onlinePaymentPanel.classList.toggle("show", method==="Online");
+    }
+
+    if(inPersonPaymentPanel){
+      inPersonPaymentPanel.classList.toggle("show", method==="In Person");
+    }
+  }
+
+  function updateLock(){
+    var sigOk=signatureValid();
+    var stage3Ready=reachedBottom && sigOk;
+    var duesOk=!!(duesAck && duesAck.checked);
+    var paymentMethod=selectedPaymentMethod();
+    var paymentOk=paymentMethod!=="";
+    var prospectAckOk=!!(prospectAck && prospectAck.checked);
+    var prospectSigOk=((prospectSigName && prospectSigName.value) ? prospectSigName.value : '').trim().length>=2;
+    var finalReady=duesOk && paymentOk && prospectAckOk && prospectSigOk;
+
+    setPill(pillRead, reachedBottom, reachedBottom ? 'Read to bottom: complete' : 'Read to bottom: not yet');
+    setPill(pillSig,  sigOk,       sigOk ? 'Signature: entered' : 'Signature: required');
+    setPill(pillDues, duesOk,      duesOk ? 'Dues acknowledgment: complete' : 'Dues acknowledgment: required');
+    setPill(pillPayment, paymentOk, paymentOk ? 'Payment method: ' + paymentMethod : 'Payment method: required');
+    setPill(pillProspectAck, prospectAckOk, prospectAckOk ? 'Prospect acknowledgment: complete' : 'Prospect acknowledgment: required');
+    setPill(pillProspectSig, prospectSigOk, prospectSigOk ? 'Prospect signature: entered' : 'Prospect signature: required');
+    setPill(pillReady, finalReady, finalReady ? 'Submit: ready' : 'Submit: locked');
+
+    updatePaymentPanels();
+
+    if(prospectAck){
+    prospectAck.addEventListener("change", updateLock);
+  }
+
+  if(prospectSigName){
+    prospectSigName.addEventListener("input", updateLock);
+    prospectSigName.addEventListener("blur", updateLock);
+  }
+
+  if(continueBtn){
+      continueBtn.disabled=!stage3Ready;
+      if(stage3Ready){
+        continueBtn.classList.add('ready');
+      } else {
+        continueBtn.classList.remove('ready');
+      }
+    }
+
+    if(submitBtn){
+      submitBtn.disabled=!finalReady;
+      if(finalReady){
+        submitBtn.classList.add('ready');
+      } else {
+        submitBtn.classList.remove('ready');
+      }
+    }
+  }
+
+  // Reliable GoDaddy-safe scroll detection (inside the scroll box)
+  function checkCocBottom(){
+    if(reachedBottom || !cocScroll) return;
+
+    var scrollTop = cocScroll.scrollTop;
+    var visibleHeight = cocScroll.clientHeight;
+    var totalHeight = cocScroll.scrollHeight;
+
+    var threshold = 20;
+
+    var atBottom = (scrollTop + visibleHeight) >= (totalHeight - threshold);
+
+    if(atBottom){
+      reachedBottom = true;
+      updateLock();
+    }
+  }
+
+  if(cocScroll){
+    cocScroll.addEventListener('scroll', function(){
+      checkCocBottom();
+    });
+  }
+
+  // Continuous safety check (helps with odd GoDaddy scroll container behavior)
+  setInterval(function(){
+    checkCocBottom();
+  }, 500);
+
+  if(sigName){
+    sigName.addEventListener("input", updateLock);
+    sigName.addEventListener("blur", updateLock);
+  }
+
+  if(duesAck){
+    duesAck.addEventListener("change", updateLock);
+  }
+
+  if(paymentOnline){
+    paymentOnline.addEventListener("change", updateLock);
+  }
+
+  if(paymentInPerson){
+    paymentInPerson.addEventListener("change", updateLock);
+  }
+
+  if(continueBtn){
+    continueBtn.addEventListener("click", function(){
+      if(continueBtn.disabled) return;
+      var duesCard=document.getElementById("dues_card");
+      if(duesCard){
+        duesCard.scrollIntoView({behavior:"smooth", block:"start"});
+      }
+    });
+  }
+
+  updateLock();
+
+  // SUBMIT
+  if(submitBtn){
+    submitBtn.addEventListener("click", function(){
+      if(submitBtn.disabled) return;
+
+      var fd=new FormData();
+      fd.append("legalName", (sigName && sigName.value ? sigName.value : '').trim());
+      fd.append("email", (sigEmail && sigEmail.value ? sigEmail.value : '').trim());
+      fd.append("sigDate", (sigDate && sigDate.value ? sigDate.value : ''));
+      fd.append("code_of_conduct_read_to_bottom", reachedBottom ? "Yes" : "No");
+      fd.append("membership_dues_acknowledged", (duesAck && duesAck.checked) ? "Yes" : "No");
+      var paymentMethod=selectedPaymentMethod();
+
+      fd.append("membership_dues_total", "$100");
+      fd.append("application_payment", "$50");
+      fd.append("application_payment_refundable", "No - Non-Refundable");
+      fd.append("payment_method_selected", paymentMethod);
+      fd.append("online_processing_fee", paymentMethod==="Online" ? "4%" : "Not Applicable");
+      fd.append("online_application_payment_total", paymentMethod==="Online" ? "$52.00" : "Not Applicable");
+      fd.append("patch_payment", "$50");
+      fd.append("prospect_status_acknowledged", (prospectAck && prospectAck.checked) ? "Yes" : "No");
+      fd.append("prospect_status_signature", (prospectSigName && prospectSigName.value ? prospectSigName.value : '').trim());
+      fd.append("submittedAt", new Date().toISOString());
+      try { fd.append("page_url", window.location.href || ""); } catch(e){}
+
+      submitBtn.disabled=true;
+      submitBtn.classList.remove('ready');
+      submitBtn.textContent="Submitting…";
+
+      fetch(SCRIPT_URL,{method:"POST",body:fd})
+        .then(function(res){
+          if(!res.ok) throw new Error("Network response not ok");
+          return res.text(); // safer than forcing JSON
+        })
+        .then(function(){
+          if(sigCard) sigCard.style.display="none";
+          if(cocCard) cocCard.style.display="none";
+          var duesCard=document.getElementById("dues_card");
+          var finalSubmitCard=document.getElementById("final_submit_card");
+          var prospectAckCard=document.getElementById("prospect_ack_card");
+          if(duesCard) duesCard.style.display="none";
+          if(finalSubmitCard) finalSubmitCard.style.display="none";
+          if(prospectAckCard) prospectAckCard.style.display="none";
+
+          if(thanks){
+            thanks.style.display="block";
+            var paymentMessage = paymentMethod==="In Person"
+              ? "<p>You selected <strong>Pay In Person</strong>. Your $50 non-refundable application payment is due to the Club Treasurer at the next regular club meeting.</p>"
+              : "<p>You selected <strong>Pay Online Now</strong>. If you have not completed the PayPal/Venmo checkout yet, please complete the $52.00 online payment before closing this page.</p>";
+
+            thanks.innerHTML =
+              "<h2>Application Complete</h2>" +
+              "<p>Your membership application, Code of Conduct acknowledgment, signature, dues acknowledgment, and payment-method selection have been successfully recorded.</p>" +
+              paymentMessage +
+              "<p style='padding:12px;border:1px solid #C1352E;border-radius:10px;'><strong>IMPORTANT: Your application has been submitted for review. Submission does not constitute acceptance, membership, or prospect status.</strong></p>" +
+              "<p>The BoneShakers Social Club Board will review your application.</p>" +
+              "<p>A club officer will contact you regarding next steps.</p>" +
+              "<p style='opacity:.7;font-size:13px;margin-top:12px;'>You may now close this page after completing any required payment.</p>";
+
+            window.scrollTo({
+              top: thanks.offsetTop - 100,
+              behavior: "smooth"
+            });
+          }
+         })
+        .catch(function(){
+          submitBtn.disabled=false;
+          submitBtn.textContent="Submit";
+          updateLock();
+          alert("Submission failed. Please try again.");
+        });
+
+    });
+  }
+
+});
+</script>
+
+  </section>
   <footer class="join-footer"><div class="pills"><span class="pill"><span class="dot"></span> Charity • Community • Family</span><span class="pill"><span class="dot"></span> Established 2005</span></div><div class="footer-bar"></div></footer>
 </main>
 <footer><div><strong>BoneShakers Social Club</strong><p>We ride for fun. We serve with purpose. We show up for each other.</p></div><small>Established 2005.</small></footer>
