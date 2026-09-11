@@ -1,60 +1,75 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Join the BoneShakers | BoneShakers Social Club</title><link rel="stylesheet" href="assets/css/style.css"></head><body>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Join the BoneShakers | BoneShakers Social Club</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .join-page{--join-red:#c1352e;--join-black:#050505;--join-white:#fff;--join-muted:#d1d1d1;max-width:1100px;margin:0 auto;padding:34px 20px 64px;color:var(--join-white)}
+    .join-page *{box-sizing:border-box}.join-page .join-hero{border:1px solid rgba(255,255,255,.15);border-radius:18px;padding:34px 26px;text-align:center;background:radial-gradient(900px 320px at 50% -45%,rgba(193,53,46,.35),transparent 62%),linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02))}
+    .join-page .eyebrow{display:flex;justify-content:center;align-items:center;gap:9px;margin:0 0 10px;color:var(--join-muted);font-size:.92rem;font-weight:700;letter-spacing:.045em;text-transform:uppercase}.join-page .dot{width:9px;height:9px;display:inline-block;border-radius:50%;background:var(--join-red);flex:none}
+    .join-page h1{margin:0;color:#fff;font-size:clamp(2rem,4.8vw,3.35rem);line-height:1.13}.join-page .intro{max-width:770px;margin:15px auto 0;color:var(--join-muted);font-size:clamp(1rem,2vw,1.13rem)}
+    .join-page .section-divider{height:1px;margin:30px 0;background:linear-gradient(90deg,transparent,var(--join-red),transparent)}
+    .join-page h2{text-align:center;margin:0 0 8px;color:#fff;font-size:clamp(1.55rem,3vw,2.15rem)}.join-page .section-lead{text-align:center;max-width:730px;margin:0 auto 20px;color:var(--join-muted)}
+    .join-page .benefit-grid,.join-page .steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.join-page .benefit,.join-page .step{border:1px solid rgba(255,255,255,.14);border-radius:15px;background:rgba(255,255,255,.04);padding:19px}
+    .join-page .benefit h3,.join-page .step h3{margin:0 0 8px;color:#fff;font-size:1.1rem}.join-page .benefit h3{display:flex;align-items:center;gap:10px}.join-page .benefit p,.join-page .step p{margin:0;color:var(--join-muted)}.join-page .icon{width:22px;height:22px;fill:none;stroke:var(--join-red);stroke-width:2;flex:none}
+    .join-page .steps{grid-template-columns:repeat(3,minmax(0,1fr))}.join-page .step{position:relative;padding-top:23px}.join-page .step:before{content:"";position:absolute;top:0;left:0;right:0;height:4px;border-radius:15px 15px 0 0;background:var(--join-red)}.join-page .step-number{display:inline-block;margin-bottom:7px;color:#fff;font-size:.8rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase}.join-page .step small{display:block;margin:-2px 0 10px;color:#f0aaa6;font-weight:700}
+    .join-page .real-value{border:1px dashed rgba(255,255,255,.34);border-radius:16px;padding:23px;background:rgba(255,255,255,.035)}.join-page .real-value h2{text-align:left;font-size:1.35rem}.join-page .real-value ul{margin:11px 0 0;padding-left:1.25rem}.join-page .real-value li{margin:8px 0;color:var(--join-muted)}
+    .join-page .join-footer{margin-top:27px;text-align:center}.join-page .pills{display:flex;justify-content:center;flex-wrap:wrap;gap:10px}.join-page .pill{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.2);border-radius:99px;padding:7px 12px;color:var(--join-muted);font-size:.9rem;background:rgba(255,255,255,.05)}.join-page .footer-bar{height:6px;margin-top:22px;border-radius:5px;background:var(--join-red)}
+    @media(max-width:800px){.join-page .steps{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.join-page{padding:24px 14px 45px}.join-page .join-hero{padding:27px 17px}.join-page .benefit-grid,.join-page .steps{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
 <header class="globalHeader">
-  <div class="brandTag">
-    <p class="brandName">Boneshakers</p>
-    <p class="brandLine">We ride for fun</p>
-    <p class="brandLine">We serve with purpose</p>
-    <p class="brandLine">We show up for each other</p>
-  </div>
+  <div class="brandTag"><p class="brandName">Boneshakers</p><p class="brandLine">We ride for fun</p><p class="brandLine">We serve with purpose</p><p class="brandLine">We show up for each other</p></div>
   <button class="mobileNavButton" id="mobileNavButton" type="button" aria-expanded="false">☰ Menu</button>
-  <div class="mainNavWrap">
-    <nav class="mainNav" id="mainNav" aria-label="Main navigation">
-      <div class="navItem"><a class="navLink" href="index.html">Home</a></div>
-      <div class="navItem">
-        <button class="navButton" type="button">About <span class="chev">⌄</span></button>
-        <div class="dropdown">
-          <a href="about.html">Our Story &amp; Mission</a>
-          <a href="board-of-directors.html">Board of Directors</a>
-          <a href="club-support-roles.html">Club Support Roles</a>
-          <a href="https://boneshakerssocialclub.com/gallery">Gallery &amp; Honor Wall</a>
-        </div>
-      </div>
-      <div class="navItem">
-        <button class="navButton" type="button">Rides &amp; Events <span class="chev">⌄</span></button>
-        <div class="dropdown"><a href="events.html">Event Calendar</a>
-          <a href="signature-rides.html">Signature Rides</a></div>
-      </div>
-      <div class="navItem">
-        <button class="navButton" type="button">Programs <span class="chev">⌄</span></button>
-        <div class="dropdown">
-          <a href="bikes-for-tykes.html">Bikes for Tykes</a>
-          <a href="impact.html">Community Impacts</a>
-        </div>
-      </div>
-      <div class="navItem">
-        <button class="navButton" type="button">Get Involved <span class="chev">⌄</span></button>
-        <div class="dropdown">
-          <a href="join.html">Join the BoneShakers</a>
-          <a href="contact.html">General Contact</a>
-        </div>
-      </div>
-      <div class="navItem">
-        <button class="navButton" type="button">Giving &amp; Support <span class="chev">⌄</span></button>
-        <div class="dropdown">
-          <a href="sponsors.html">Sponsor</a>
-          <a href="https://boneshakerssocialclub.com/donate">Donate</a>
-        </div>
-      </div>
-      <div class="navItem">
-        <button class="navButton" type="button">Shop <span class="chev">⌄</span></button>
-        <div class="dropdown"><a href="marketplace.html">Marketplace</a></div>
-      </div>
-      <div class="navItem">
-        <button class="navButton" type="button">More <span class="chev">⌄</span></button>
-        <div class="dropdown"><a href="contact.html">Contact</a></div>
-      </div>
-    </nav>
-  </div>
+  <div class="mainNavWrap"><nav class="mainNav" id="mainNav" aria-label="Main navigation">
+    <div class="navItem"><a class="navLink" href="index.html">Home</a></div>
+    <div class="navItem"><button class="navButton" type="button">About <span class="chev">⌄</span></button><div class="dropdown"><a href="about.html">Our Story &amp; Mission</a><a href="board-of-directors.html">Board of Directors</a><a href="club-support-roles.html">Club Support Roles</a><a href="https://boneshakerssocialclub.com/gallery">Gallery &amp; Honor Wall</a></div></div>
+    <div class="navItem"><button class="navButton" type="button">Rides &amp; Events <span class="chev">⌄</span></button><div class="dropdown"><a href="events.html">Event Calendar</a><a href="signature-rides.html">Signature Rides</a></div></div>
+    <div class="navItem"><button class="navButton" type="button">Programs <span class="chev">⌄</span></button><div class="dropdown"><a href="bikes-for-tykes.html">Bikes for Tykes</a><a href="impact.html">Community Impacts</a></div></div>
+    <div class="navItem"><button class="navButton" type="button">Get Involved <span class="chev">⌄</span></button><div class="dropdown"><a href="join.html">Join the BoneShakers</a><a href="contact.html">General Contact</a></div></div>
+    <div class="navItem"><button class="navButton" type="button">Giving &amp; Support <span class="chev">⌄</span></button><div class="dropdown"><a href="sponsors.html">Sponsor</a><a href="https://boneshakerssocialclub.com/donate">Donate</a></div></div>
+    <div class="navItem"><button class="navButton" type="button">Shop <span class="chev">⌄</span></button><div class="dropdown"><a href="marketplace.html">Marketplace</a></div></div>
+    <div class="navItem"><button class="navButton" type="button">More <span class="chev">⌄</span></button><div class="dropdown"><a href="contact.html">Contact</a></div></div>
+  </nav></div>
 </header>
-<main><section class="page-hero"><p class="eyebrow">BONESHAKERS SOCIAL CLUB</p><h1>Join the BoneShakers</h1></section><section class="content"><h2>Membership</h2><p>This will become the complete membership hub: who we are looking for, expectations, application steps, waivers, Code of Conduct and renewal information.</p><div class="notice"><strong>Build in progress</strong><p>We are migrating and improving this section while the current BoneShakers website remains live.</p></div><a class="btn" href="index.html">← Back to Home</a></section></main>
-<footer><div><strong>BoneShakers Social Club</strong><p>We ride for fun. We serve with purpose. We show up for each other.</p></div><small>New website build in progress.</small></footer><script src="assets/js/main.js"></script></body></html>
+<main class="join-page">
+  <header class="join-hero">
+    <p class="eyebrow"><span class="dot"></span> Riding Together • Serving with Purpose • Over 20 Years Strong</p>
+    <h1>Why Become a Member of the BoneShakers Social Club?</h1>
+    <p class="intro">When you join, you’re not just signing up for a ride — you’re becoming part of a family. For <strong>over 20 years</strong>, the BoneShakers have been a respected riding organization dedicated to fun, unity, and giving back.</p>
+  </header>
+  <div class="section-divider"></div>
+  <section aria-labelledby="membership-value"><h2 id="membership-value">What Membership Means</h2><p class="section-lead">A strong riding family, meaningful events, and a real opportunity to make an impact right here in our community.</p>
+    <div class="benefit-grid">
+      <article class="benefit"><h3><svg class="icon" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 1 18 0v2a2 2 0 0 1-2 2h-6"/><path d="M3 12h8l-2 4"/></svg>Brotherhood &amp; Sisterhood</h3><p>A riding family that’s got your back — on and off the road.</p></article>
+      <article class="benefit"><h3><svg class="icon" viewBox="0 0 24 24"><path d="M4 4v16M6 5h9l-2 4 2 4H6z"/></svg>Events &amp; Rides</h3><p>Parades, rallies, charity runs, and official club rides you can count on.</p></article>
+      <article class="benefit"><h3><svg class="icon" viewBox="0 0 24 24"><path d="M20 12v8H4v-8M2 8h20v4H2z"/><path d="M12 8v12M8 6a2 2 0 1 1 4 0v2H8zM12 6a2 2 0 1 1 4 0v2h-4z"/></svg>Exclusive Perks</h3><p>BBQs, bike nights, family events, plus member-only discounts and early access.</p></article>
+      <article class="benefit"><h3><svg class="icon" viewBox="0 0 24 24"><path d="M12 21s-7-4.35-9-8.5A5.5 5.5 0 0 1 12 7a5.5 5.5 0 0 1 9 5.5C19 16.65 12 21 12 21z"/></svg>Community Impact</h3><p>Support kids, veterans, and local causes through organized charity efforts.</p></article>
+      <article class="benefit"><h3><svg class="icon" viewBox="0 0 24 24"><path d="M3 21h18M7 21v-8h10v8M9 9l3-5 3 5"/></svg>Your Voice Counts</h3><p>Vote on club matters, policies, and help shape the next 20 years.</p></article>
+      <article class="benefit"><h3><svg class="icon" viewBox="0 0 24 24"><path d="M12 3l7 4v5c0 5-3.5 9-7 9s-7-4-7-9V7z"/></svg>Tradition &amp; Respect</h3><p>Ride with a club recognized and respected for <strong>over 20 years</strong>.</p></article>
+      <article class="benefit"><h3><svg class="icon" viewBox="0 0 24 24"><path d="M4 4h12a4 4 0 0 1 4 4v12H6a2 2 0 0 1-2-2z"/><path d="M8 4v16"/></svg>Structure &amp; Support</h3><p>Leadership opportunities, committee roles, and rider-to-rider mentorship on safety and maintenance.</p></article>
+      <article class="benefit"><h3><svg class="icon" viewBox="0 0 24 24"><path d="M8 3h8l2 4v14H6V7z"/><path d="M12 3v18"/></svg>Club Colors (Kutts)</h3><p>Wear your kutts with pride as a recognized member of a respected riding organization.</p></article>
+    </div>
+  </section>
+  <div class="section-divider"></div>
+  <section aria-labelledby="membership-path"><h2 id="membership-path">Your Path to Membership</h2><p class="section-lead">We take the time to get to know one another so every new member understands and shares our values.</p>
+    <div class="steps">
+      <article class="step"><span class="step-number">Phase 1</span><h3>Initial Interest &amp; Inquiry</h3><small>Show up, say hello, learn about us.</small><p>Attend open events, get referred by a member (encouraged, not required), and share basic information and why you want to join.</p></article>
+      <article class="step"><span class="step-number">Phase 2</span><h3>Meet &amp; Greet / Hang-Around</h3><small>About 3 club events or meetings.</small><p>Join at least three rides, events, or volunteer activities. No colors or patches yet — just get to know the crew.</p></article>
+      <article class="step"><span class="step-number">Phase 3</span><h3>Basic Background Screening</h3><small>Safety and reputation check.</small><p>Valid license with M-endorsement and insurance; no disqualifying crimes. The Board may verify when concerns arise.</p></article>
+      <article class="step"><span class="step-number">Phase 4</span><h3>Prospect Phase</h3><small>Minimum 3 months.</small><p>You’ll have a sponsor, pitch in at events, log service hours, and demonstrate reliability and safe conduct.</p></article>
+      <article class="step"><span class="step-number">Phase 5</span><h3>Vote for Full Membership</h3><small>Board first, then membership.</small><p>Your sponsor presents you. The Board confirms requirements and votes. If approved, members may vote at the next meeting.</p></article>
+      <article class="step"><span class="step-number">Phase 6</span><h3>Patching-In</h3><small>Welcome aboard.</small><p>We hold a patch-in and celebrate. New members are formally welcomed into the club and receive their colors.</p></article>
+    </div>
+  </section>
+  <div class="section-divider"></div>
+  <section class="real-value"><h2>🔒 The Real Value</h2><ul><li>A <strong>second family</strong> that stands with you in good times and bad.</li><li><strong>Respect and recognition</strong> as part of a riding organization with over 20 years of tradition.</li><li>The <strong>pride</strong> of being more than a rider — being a BoneShaker.</li></ul></section>
+  <footer class="join-footer"><div class="pills"><span class="pill"><span class="dot"></span> Charity • Community • Family</span><span class="pill"><span class="dot"></span> Established 2005</span></div><div class="footer-bar"></div></footer>
+</main>
+<footer><div><strong>BoneShakers Social Club</strong><p>We ride for fun. We serve with purpose. We show up for each other.</p></div><small>Established 2005.</small></footer>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
