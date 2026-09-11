@@ -1,60 +1,429 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Community Impact | BoneShakers Social Club</title><link rel="stylesheet" href="assets/css/style.css"></head><body>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>BoneShakers Social Club — Community Highlights</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    :root{
+      --white:#FFFFFF;
+      --red:#C1352E;         /* Club dark red */
+      --bg:#000000;          /* Page background */
+      --card:#0f0f0f;        /* Card background */
+      --muted:#BFBFBF;       /* Muted text */
+      --line:#232323;        /* Divider / borders */
+      --shadow: 0 12px 32px rgba(0,0,0,.35);
+      --radius: 16px;
+      --radius-sm: 12px;
+      --maxw: 1080px;
+    }
+
+    html, body {
+      background: var(--bg);
+      color: var(--white);
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      scroll-behavior: smooth;
+    }
+
+    /* Accessible skip links (now includes Skip to Violations) */
+    .skip-links {
+      position: absolute;
+      top: -1000px;
+      left: 0;
+      display: flex;
+      gap: 10px;
+    }
+    .skip-links a {
+      background: var(--red);
+      color: var(--white);
+      padding: 10px 14px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      border: 1px solid #a82a24;
+    }
+    .skip-links a:focus {
+      position: fixed;
+      top: 14px;
+      left: 14px;
+      z-index: 10000;
+      box-shadow: 0 8px 24px rgba(0,0,0,.45);
+    }
+
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 28px 18px 60px; }
+
+    .hero {
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(193,53,46,.25), transparent),
+                  radial-gradient(1000px 500px at 100% 0%, rgba(193,53,46,.18), transparent);
+      border-bottom: 1px solid var(--line);
+      padding: 40px 0 18px;
+      margin-bottom: 18px;
+      position: relative;
+    }
+
+    /* Red badge changed to BSSC */
+    .brand-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: var(--red);
+      color: var(--white);
+      border: 1px solid #a82a24;
+      font-weight: 900;
+      letter-spacing: .5px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      box-shadow: 0 10px 24px rgba(0,0,0,.45);
+      user-select: none;
+    }
+
+    .title {
+      font-size: clamp(28px, 3.2vw, 44px);
+      font-weight: 800;
+      margin: 0 0 6px 0;
+      padding-left: 0;
+    }
+    .subtitle {
+      font-size: clamp(16px, 2vw, 18px);
+      color: var(--muted);
+      margin: 0;
+      max-width: 880px;
+    }
+
+    .section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      margin: 16px 0 22px;
+    }
+    .section h2 {
+      font-size: clamp(22px, 2.4vw, 28px);
+      margin: 0 0 8px 0;
+    }
+    .section p { margin: 10px 0; color: #ECECEC; }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .stat {
+      background: #121212;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 16px 14px;
+      text-align: center;
+    }
+    .stat .num {
+      font-size: clamp(22px, 3vw, 28px);
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .stat .label {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .item {
+      background: #101010;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+    }
+    .item b { color: var(--white); }
+    .item p { margin: 6px 0 0; color: #E7E7E7; }
+
+    .cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 16px;
+      border-radius: 999px;
+      font-weight: 700;
+      text-decoration: none;
+      border: 1px solid var(--red);
+      transition: transform .08s ease, background .2s ease, opacity .4s ease;
+    }
+    .btn.primary { background: var(--red); color: var(--white); }
+    .btn.secondary { background: #1a1a1a; color: var(--white); border-color: #333; }
+    .btn:hover { transform: translateY(-1px); }
+    .btn.primary:hover { background: #DA4A43; }
+    .btn.secondary:hover { background: #2a2a2a; }
+
+    .divider { height: 1px; background: var(--line); }
+
+    /* Floating Action Buttons container */
+    .fab-container {
+      position: fixed;
+      right: 20px;
+      bottom: 22px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(20px);
+      transition: opacity .4s ease, transform .4s ease;
+    }
+    .fab-container.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .fab {
+      border-radius: 999px;
+      padding: 14px 18px;
+      font-weight: 800;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 14px 36px rgba(0,0,0,.55);
+      border: 1px solid #333;
+      background: #1a1a1a;
+      color: var(--white);
+    }
+    .fab--primary { background: var(--red); border-color: #a82a24; }
+    .fab--primary:hover { background:#DA4A43; }
+    .fab:hover { background:#2a2a2a; }
+    .fab-icon { font-weight: 900; }
+
+    @media (max-width: 820px) {
+      .stats { grid-template-columns: 1fr 1fr; }
+      .list { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 520px) {
+      .fab-container { right: 14px; bottom: 80px; }
+      .fab { padding: 12px 16px; }
+    }
+
+    /* Ensure printed page looks clean */
+    @media print {
+      .fab-container, .skip-links { display: none !important; }
+      a { text-decoration: none; color: #000; }
+      body { background: #fff; color: #000; }
+      .section { box-shadow: none; border-color: #ddd; }
+    }
+  </style>
+</head>
+<body>
 <header class="globalHeader">
-  <div class="brandTag">
-    <p class="brandName">Boneshakers</p>
-    <p class="brandLine">We ride for fun</p>
-    <p class="brandLine">We serve with purpose</p>
-    <p class="brandLine">We show up for each other</p>
-  </div>
+  <div class="brandTag"><p class="brandName">Boneshakers</p><p class="brandLine">We ride for fun</p><p class="brandLine">We serve with purpose</p><p class="brandLine">We show up for each other</p></div>
   <button class="mobileNavButton" id="mobileNavButton" type="button" aria-expanded="false">☰ Menu</button>
-  <div class="mainNavWrap">
-    <nav class="mainNav" id="mainNav" aria-label="Main navigation">
-      <div class="navItem"><a class="navLink" href="index.html">Home</a></div>
-      <div class="navItem">
-        <button class="navButton" type="button">About <span class="chev">⌄</span></button>
-        <div class="dropdown">
-          <a href="about.html">Our Story &amp; Mission</a>
-          <a href="board-of-directors.html">Board of Directors</a>
-          <a href="club-support-roles.html">Club Support Roles</a>
-          <a href="https://boneshakerssocialclub.com/gallery">Gallery &amp; Honor Wall</a>
-        </div>
-      </div>
-      <div class="navItem">
-        <button class="navButton" type="button">Rides &amp; Events <span class="chev">⌄</span></button>
-        <div class="dropdown"><a href="events.html">Event Calendar</a>
-          <a href="signature-rides.html">Signature Rides</a></div>
-      </div>
-      <div class="navItem">
-        <button class="navButton" type="button">Programs <span class="chev">⌄</span></button>
-        <div class="dropdown">
-          <a href="bikes-for-tykes.html">Bikes for Tykes</a>
-          <a href="impact.html">Community Impacts</a>
-        </div>
-      </div>
-      <div class="navItem">
-        <button class="navButton" type="button">Get Involved <span class="chev">⌄</span></button>
-        <div class="dropdown">
-          <a href="join.html">Join the BoneShakers</a>
-          <a href="contact.html">General Contact</a>
-        </div>
-      </div>
-      <div class="navItem">
-        <button class="navButton" type="button">Giving &amp; Support <span class="chev">⌄</span></button>
-        <div class="dropdown">
-          <a href="sponsors.html">Sponsor</a>
-          <a href="https://boneshakerssocialclub.com/donate">Donate</a>
-        </div>
-      </div>
-      <div class="navItem">
-        <button class="navButton" type="button">Shop <span class="chev">⌄</span></button>
-        <div class="dropdown"><a href="marketplace.html">Marketplace</a></div>
-      </div>
-      <div class="navItem">
-        <button class="navButton" type="button">More <span class="chev">⌄</span></button>
-        <div class="dropdown"><a href="contact.html">Contact</a></div>
-      </div>
-    </nav>
-  </div>
+  <div class="mainNavWrap"><nav class="mainNav" id="mainNav" aria-label="Main navigation">
+    <div class="navItem"><a class="navLink" href="index.html">Home</a></div>
+    <div class="navItem"><button class="navButton" type="button">About <span class="chev">⌄</span></button><div class="dropdown"><a href="about.html">Our Story &amp; Mission</a><a href="board-of-directors.html">Board of Directors</a><a href="club-support-roles.html">Club Support Roles</a><a href="https://boneshakerssocialclub.com/gallery">Gallery &amp; Honor Wall</a></div></div>
+    <div class="navItem"><button class="navButton" type="button">Rides &amp; Events <span class="chev">⌄</span></button><div class="dropdown"><a href="events.html">Event Calendar</a><a href="signature-rides.html">Signature Rides</a></div></div>
+    <div class="navItem"><button class="navButton" type="button">Programs <span class="chev">⌄</span></button><div class="dropdown"><a href="bikes-for-tykes.html">Bikes for Tykes</a><a href="impact.html">Community Impacts</a></div></div>
+    <div class="navItem"><button class="navButton" type="button">Get Involved <span class="chev">⌄</span></button><div class="dropdown"><a href="join.html">Join the BoneShakers</a><a href="contact.html">General Contact</a></div></div>
+    <div class="navItem"><button class="navButton" type="button">Giving &amp; Support <span class="chev">⌄</span></button><div class="dropdown"><a href="sponsors.html">Sponsor</a><a href="https://boneshakerssocialclub.com/donate">Donate</a></div></div>
+    <div class="navItem"><button class="navButton" type="button">Shop <span class="chev">⌄</span></button><div class="dropdown"><a href="marketplace.html">Marketplace</a></div></div>
+    <div class="navItem"><button class="navButton" type="button">More <span class="chev">⌄</span></button><div class="dropdown"><a href="contact.html">Contact</a></div></div>
+  </nav></div>
 </header>
-<main><section class="page-hero"><p class="eyebrow">BONESHAKERS SOCIAL CLUB</p><h1>Community Impact</h1></section><section class="content"><h2>What We Give Back</h2><p>This page will bring together BoneShakers community giving, volunteer work, supported organizations and major annual impact highlights in one place.</p><div class="notice"><strong>Build in progress</strong><p>We are migrating and improving this section while the current BoneShakers website remains live.</p></div><a class="btn" href="index.html">← Back to Home</a></section></main>
-<footer><div><strong>BoneShakers Social Club</strong><p>We ride for fun. We serve with purpose. We show up for each other.</p></div><small>New website build in progress.</small></footer><script src="assets/js/main.js"></script></body></html>
+  <!-- Accessible Skip Links -->
+  <nav class="skip-links" aria-label="Skip links">
+    <a href="#main">Skip to Content</a>
+    <a href="#violations">Skip to Violations</a>
+  </nav>
+
+  <!-- Universal top anchor -->
+  <div id="top"></div>
+
+  <header class="hero" role="banner">
+    <!-- Red badge (now says BSSC) -->
+    <div class="brand-badge" aria-hidden="true">BSSC</div>
+
+    <div class="wrap">
+      <h1 class="title">BoneShakers Social Club — Riding with Purpose</h1>
+      <p class="subtitle">
+        The BoneShakers Social Club (BSSC) has been part of the Hampton Roads community for over 21 years.
+        We are more than a group of motorcycle enthusiasts—we are a family united by our love for riding and our commitment to giving back.
+        Through countless events, fundraisers, and partnerships, our club has proudly contributed over <b>$432,000</b> to local families, charities, and causes.
+        Every mile we ride strengthens our bond as a club and fuels our mission to make a positive impact.
+      </p>
+    </div>
+  </header>
+
+  <main id="main" class="wrap" role="main">
+    <!-- Bikes for Tykes -->
+    <section class="section" aria-labelledby="bft-title">
+      <h2 id="bft-title">Bikes for Tykes</h2>
+      <p>
+        One of our signature events is the <b>Bikes for Tykes Giveaway</b>, where we work year-round to provide children in need with brand-new bicycles.
+        Each bike is more than just a gift—it’s a symbol of freedom, confidence, and joy. For over <b>10 years</b>, this event has reflected the heart of who we are:
+        riders dedicated to creating opportunities for kids and strengthening our community one smile at a time.
+      </p>
+      <div class="cta">
+        <a class="btn primary" target="_top" href="join.html">Get Involved</a>
+        <a class="btn secondary" target="_top" href="sponsors.html">Partner With Us</a>
+      </div>
+    </section>
+
+    <!-- Signature Rides & Events -->
+    <section class="section" aria-labelledby="sre-title">
+      <h2 id="sre-title">Signature Rides &amp; Events</h2>
+      <div class="list">
+        <div class="item"><b>Pink Ride</b><p>Supporting breast cancer awareness and local families through a community-powered ride.</p></div>
+        <div class="item"><b>Bug Run</b><p>A uniquely fun ride through Virginia Beach back roads where riders compete for the most bug-splatter “hits.”</p></div>
+        <div class="item"><b>Community Parades</b><p>From the Neptune Festival to Veterans Day and Christmas, we proudly represent the riding community in local traditions.</p></div>
+        <div class="item"><b>More Club Traditions</b><p>Bike nights, dinner rides, and charity partnerships that keep us active and connected all year long.</p></div>
+      </div>
+    </section>
+
+    <!-- Impact Snapshot -->
+    <section class="section" aria-labelledby="impact-title">
+      <h2 id="impact-title">Community Impact at a Glance</h2>
+      <div class="stats">
+        <div class="stat"><div class="num">21+ Years</div><div class="label">Serving Hampton Roads</div></div>
+        <div class="stat"><div class="num">$432K+</div><div class="label">Donated to Families &amp; Charities</div></div>
+        <div class="stat"><div class="num">1500+</div><div class="label">Bikes Gifted (17+ Years)</div></div>
+        <div class="stat"><div class="num">Countless</div><div class="label">Smiles from Rides &amp; Events</div></div>
+      </div>
+    </section>
+
+    <!-- Partnerships & Recognition -->
+    <section class="section" aria-labelledby="partner-title">
+      <h2 id="partner-title">Partnerships &amp; Recognition</h2>
+      <p>
+        Our efforts are possible thanks to the support of local businesses, community partners, and fellow nonprofit organizations.
+        Together, we show up where it matters—helping families in need, supporting veterans, and creating safe, family-friendly events.
+      </p>
+    </section>
+
+    <!-- Join the Ride -->
+    <section class="section" aria-labelledby="join-title">
+      <h2 id="join-title">Join the Ride</h2>
+      <p>
+        We welcome anyone who shares our passion for riding and giving back. Join us for a ride, support a fundraiser, or partner with us in making a difference.
+        Together, we can keep the wheels turning for our community.
+      </p>
+      <div class="cta">
+        <a class="btn primary" target="_top" href="https://boneshakerssocialclub.com/donate#top">Donate</a>
+        <a class="btn secondary" target="_top" href="join.html">Membership Info</a>
+        <a class="btn secondary" target="_top" href="events.html">View Events</a>
+      </div>
+    </section>
+
+    <!-- Violations / Code of Conduct (anchor target for the skip link) -->
+    <section class="section" id="violations" aria-labelledby="violations-title">
+      <h2 id="violations-title">Code of Conduct &amp; Violations</h2>
+      <p>
+        BSSC is a family-friendly riding club. We expect respectful behavior at all club functions, online spaces, and partner events.
+        Serious or repeated violations may result in removal from events or loss of membership, per our bylaws.
+      </p>
+      <ul>
+        <li>Respect members, guests, venues, and partners.</li>
+        <li>No harassment, threats, or illegal activity.</li>
+        <li>Follow ride captains’ safety directions and venue rules.</li>
+        <li>Report issues to an officer or via the contact form.</li>
+      </ul>
+      <div class="cta">
+        <a class="btn primary" target="_top" href="contact.html">Report a Concern</a>
+        <a class="btn secondary" target="_top" href="join.html">View Membership Info</a>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact</h2>
+      <p class="muted">
+        Have a question or want to collaborate? Reach out and let’s ride with purpose—together.
+      </p>
+      <div class="cta" style="margin-top:12px;">
+        <a class="btn primary" target="_top" href="contact.html">Contact Us</a>
+      </div>
+      <div class="divider"></div>
+      <p style="color:var(--muted); font-size:14px;">
+        BoneShakers Social Club • P.O. Box 3652, Virginia Beach, VA 23454-9595
+      </p>
+    </section>
+  </main>
+
+  <!-- Floating Action Buttons -->
+  <div class="fab-container" id="fab">
+    <a class="fab fab--primary" target="_top" href="https://boneshakerssocialclub.com/donate#top" aria-label="Donate">
+      <span class="fab-icon">❤</span> Donate
+    </a>
+    <button class="fab" type="button" id="btn-print" aria-label="Print this page">
+      🖨️ Print
+    </button>
+    <button class="fab" type="button" id="btn-download" aria-label="Download this page">
+      ⬇️ Download
+    </button>
+    <a class="fab" href="#top" aria-label="Back to top"><span class="fab-icon">⬆</span> Top</a>
+  </div>
+
+  <script>
+    (function() {
+      const fabContainer = document.getElementById("fab");
+      const donateBtn = fabContainer.querySelector("a[href*='/donate']");
+      const printBtn = document.getElementById("btn-print");
+      const downloadBtn = document.getElementById("btn-download");
+
+      // Hide Donate if already on donate page
+      if (window.location.href.includes("/donate")) {
+        donateBtn.style.display = "none";
+      }
+
+      // Show FABs after scrolling
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 200) {
+          fabContainer.classList.add("visible");
+        } else {
+          fabContainer.classList.remove("visible");
+        }
+      });
+
+      // Print button
+      printBtn.addEventListener("click", () => {
+        window.print();
+      });
+
+      // Download button (downloads the current HTML as a file)
+      downloadBtn.addEventListener("click", () => {
+        const doctype = "<!doctype html>\n";
+        const html = document.documentElement.outerHTML;
+        const blob = new Blob([doctype + html], { type: "text/html" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "bssc-community-highlights.html";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      });
+
+      // Force new pages to start at the top (helps builders that persist scroll)
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      window.addEventListener('beforeunload', () => {
+        window.scrollTo(0, 0);
+      });
+    })();
+  </script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
